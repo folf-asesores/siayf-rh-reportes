@@ -1,6 +1,6 @@
 # Reportes del SIAYF-RH (siayf-rh-reportes)
-Este proyecto separa el API de reportes del proyecto SIAYF-RH, como un servicio 
-web (RESTFUL).
+Este proyecto separa el API de reportes del proyecto [SIAYF-RH](https://github.com/folf-asesores/siayf-rh),
+como un servicio web (RESTFUL).
 
 ## Instalación
 ### Requerimientos
