@@ -195,18 +195,6 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>org.docx4j</groupId>
-            <artifactId>docx4j</artifactId>
-            <version>3.2.1</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.docx4j</groupId>
-            <artifactId>docx4j-MOXy-JAXBContext</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
         <!-- Needed for running tests (you may also use TestNG) -->
         <dependency>
             <groupId>junit</groupId>
