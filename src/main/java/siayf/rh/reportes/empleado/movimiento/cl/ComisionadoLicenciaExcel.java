@@ -38,7 +38,7 @@ public class ComisionadoLicenciaExcel extends ExcelPlantillaReporte<ComisionadoL
     private static final int COLUMNA_CENTRO_TRABAJO_DESTINO = 11;
 
     public ComisionadoLicenciaExcel() {
-        super("/plantillas/comisionadoLicencia/", "Comisionado_Licencia.xlsx", "Comisionado_Licencia");
+        super("/plantillas/comisionadoLicencia/", "comisionado-licencia.xlsx", "Comisionado_Licencia");
     }
 
     @Override

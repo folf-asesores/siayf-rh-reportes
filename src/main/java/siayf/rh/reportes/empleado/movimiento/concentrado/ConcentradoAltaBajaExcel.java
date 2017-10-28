@@ -35,7 +35,7 @@ public class ConcentradoAltaBajaExcel extends ExcelPlantillaReporte<ConcentradoA
     private static final int COLUMNA_OBSERVACIONES = 8;
 
     public ConcentradoAltaBajaExcel() {
-        super("/plantillas/concentradoAltaBaja/", "Concentrado_Altas_Bajas.xlsx", "Concentrado_Altas_Bajas");
+        super("/plantillas/concentradoAltaBaja/", "concentrado-altas-bajas.xlsx", "Concentrado_Altas_Bajas");
     }
 
     @Override

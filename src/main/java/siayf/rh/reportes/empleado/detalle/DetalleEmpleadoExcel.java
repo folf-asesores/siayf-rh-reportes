@@ -94,7 +94,7 @@ public class DetalleEmpleadoExcel extends ExcelPlantillaReporte<DetalleEmpleadoD
     private static final int TIPO_PERIODO = 64;
 
     public DetalleEmpleadoExcel() {
-        super("/plantillas/empleado/", "Detalle_Empleado.xlsx", "DETALLE_EMPLEADO");
+        super("/plantillas/empleado/", "detalle-empleado.xlsx", "DETALLE_EMPLEADO");
     }
 
     @Override
