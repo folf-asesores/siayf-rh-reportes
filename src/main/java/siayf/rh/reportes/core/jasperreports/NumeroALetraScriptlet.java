@@ -1,17 +1,19 @@
 /*
  * NumeroALetraScriptlet.java
- * Creado el 28/Nov/2016 9:33:55 AM
+ * Creado el 28/nov/2016 9:33:55 AM
  * 
  */
+
 package siayf.rh.reportes.core.jasperreports;
 
 import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import siayf.rh.reportes.util.NumeroALetraUtil;
 
 import net.sf.jasperreports.engine.JRDefaultScriptlet;
 import net.sf.jasperreports.engine.JRScriptletException;
-import org.jboss.logging.Logger;
 
 /**
  *
@@ -51,19 +53,19 @@ public class NumeroALetraScriptlet extends JRDefaultScriptlet {
 
         try {
             if (numero instanceof BigDecimal) {
-                LOGGER.debugv("Evaluandolo como BigDecimal {0}", numero);
+                LOGGER.log(Level.FINE, "Evaluandolo como BigDecimal {0}", numero);
                 asLetters = NumeroALetraUtil.convertirNumeroALetra((BigDecimal) numero, moneda);
             } else {
-                LOGGER.debugv("Evaluandolo como String {0}", numero);
+                LOGGER.log(Level.FINE, "Evaluandolo como String {0}", numero);
                 asLetters = NumeroALetraUtil.convertirNumeroALetra(numero.toString(), moneda);
             }
         } catch (NumberFormatException ex) {
-            LOGGER.errorv("Error de conversión: {0}", ex);
+            LOGGER.log(Level.SEVERE, "Error de conversión: {0}", ex);
         } catch (Exception ex) {
-            LOGGER.errorv("Error insperado al convertir: {0}",ex);
+            LOGGER.log(Level.SEVERE, "Error inesperado al convertir: {0}",ex);
         }
 
-        LOGGER.debugv("Resultado de la conversion {0}", asLetters);
+        LOGGER.log(Level.FINE, "Resultado de la conversión {0}", asLetters);
         return asLetters;
     }
 

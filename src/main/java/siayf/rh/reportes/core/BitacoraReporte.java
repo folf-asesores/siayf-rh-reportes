@@ -42,26 +42,4 @@ public interface BitacoraReporte {
      */
     Map<String, String> obtenerParametros(String referencia);
 
-    /**
-     * Permite conocer el nombre del reporte que se generar con la refencia 
-     * (ticket).
-     * 
-     * @param referencia la referencia que se genera al guardar los parámetros 
-     * en la bitácora.
-     * @return si la referencia es valida se devolverá el nombre del reporte en
-     * caso contrario devuelve <code>null</code>.
-     */
-    String obtenerNombreReporte(String referencia);
-
-    /**
-     * Permite conocer el tipo de reporte que se puede generar según la 
-     * referencia (ticket).
-     * 
-     * @param referencia la referencia que se genera al guardar los parámetros 
-     * en la bitácora.
-     * @return si la referencia es valida se devolverá el tipo de reporte en
-     * caso contrario devuelve <code>null</code>.
-     */
-    String obtenerTipoReporte(String referencia);
-
 }

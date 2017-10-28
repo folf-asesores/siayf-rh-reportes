@@ -23,7 +23,7 @@ public class DetalleEmpleadoBean implements DetalleEmpleado {
     private DetalleEmpleadoQuery detalleEmpleadoQuery;
 
     @Override
-    public byte[] generarReporte(Object... parametros) {
+    public byte[] generarReporte(Object ... parametros) {
         Integer idTipoContratacion = (Integer) parametros[0];
         List<DetalleEmpleadoDto> detalleEmpleado = detalleEmpleadoQuery.detalleEmpleadoPorIdTipoContratacion(idTipoContratacion);
         DetalleEmpleadoExcel detalleEmpleadoExcel = new DetalleEmpleadoExcel();

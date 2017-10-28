@@ -14,10 +14,12 @@ import javax.naming.NamingException;
 import org.jboss.logging.Logger;
 
 import siayf.rh.reportes.api.Generador;
+/*
 import siayf.rh.reportes.nomina.comprobante.ComprobanteEmpleado;
 import siayf.rh.reportes.nomina.dispersion.Dispersion;
 import siayf.rh.reportes.nomina.firma.Firma;
 import siayf.rh.reportes.nomina.prenomina.PrenominaReporte;
+ */
 
 /**
  * Esta clase se encarga de generar los reporte de texto plano.
@@ -41,6 +43,7 @@ public class TxtGenerador implements Generador {
 
         byte[] bytes = null;
 
+        /*
         if (almacen.extisteReporte(nombreReporte)) {
             switch (nombreReporte) {
                 case "comprobante_nomina": {
@@ -68,6 +71,9 @@ public class TxtGenerador implements Generador {
                 }
             }
         }
+        */
+        
+        // TODO: Agregar la genaración de reporte vacio en caso de que sea null.
 
         return bytes;
     }

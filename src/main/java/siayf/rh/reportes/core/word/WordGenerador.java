@@ -3,17 +3,12 @@
  */
 package siayf.rh.reportes.core.word;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+
+import siayf.rh.reportes.api.Generador;
+/*
 import mx.gob.saludtlax.rh.contrato.Contrato;
 import mx.gob.saludtlax.rh.contrato.ContratoDTO;
 import mx.gob.saludtlax.rh.empleados.nombramientos.Nombramiento;
@@ -22,22 +17,17 @@ import mx.gob.saludtlax.rh.empleados.nombramientos.impresion.NombramientoDetalle
 import mx.gob.saludtlax.rh.reporteslaborales.cambio.CambioAdscripcionDTO;
 import mx.gob.saludtlax.rh.reporteslaborales.comision.ComisionOficialDTO;
 import mx.gob.saludtlax.rh.reporteslaborales.reincorporacion.ReincorporacionBaseDTO;
-import siayf.rh.reportes.api.Generador;
 import mx.gob.saludtlax.rh.reporteslaborales.comision.ComisionEJB;
 import mx.gob.saludtlax.rh.reporteslaborales.reservacion.ReservacionDTO;
 import mx.gob.saludtlax.rh.reporteslaborales.termino.TerminoDTO;
 import mx.gob.saludtlax.rh.util.FechaUtil;
 import mx.gob.saludtlax.rh.util.NumeroALetra;
 import mx.gob.saludtlax.rh.util.NumeroUtil;
+*/
+
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.docx4j.model.fields.merge.DataFieldName;
-import org.docx4j.model.fields.merge.MailMerger;
-import org.docx4j.openpackaging.exceptions.Docx4JException;
-import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.jboss.logging.Logger;
 
-import static siayf.rh.reportes.util.PoiUtils.remplazarCampos;
 
 /**
  * @author Eduardo Chuc Mex
@@ -63,6 +53,7 @@ public class WordGenerador implements Generador {
     private static DateFormat formatFecha = DateFormat.getDateInstance(DateFormat.LONG);
     private static Integer idNombramientoGenerico = 0;
     private static Integer idClasificacion = 0;
+    /*
     private static NombramientoDetalleDTO nombramientoDTO;
     private static NombramientoInterinatoDTO nombramientoInterinatoDTO;
     private static ComisionOficialDTO comisionOficialDTO;
@@ -70,6 +61,7 @@ public class WordGenerador implements Generador {
     private static ReincorporacionBaseDTO reincorporacionBaseDTO;
     private static ReservacionDTO reservacionDTO;
     private static TerminoDTO terminoDTO;
+    */
 
     @Override
     public byte[] obtenerReporte(Map<String, String> parametros) {
@@ -79,6 +71,7 @@ public class WordGenerador implements Generador {
 
         byte[] bytes = null;
 
+        /*
         try {
 
             WordReporte reporte = almacen.obtenerReporte(nombreReporte);
@@ -783,15 +776,12 @@ public class WordGenerador implements Generador {
         } catch (IOException ex) {
             LOGGER.errorv("Ocurrio un error al generar el documento: {0}", ex);
         }
-
+*/
         return bytes;
     }
 
-    /**
-     * Interface del contrato
-     *
-     * @return
-     */
+    
+/*
     private Contrato getContrato() {
         try {
             Context initContext = new InitialContext();
@@ -803,12 +793,9 @@ public class WordGenerador implements Generador {
             return null;
         }
     }
+*/
 
-    /**
-     * Interface del nombramiento
-     *
-     * @return
-     */
+    /*
     private Nombramiento getNombramiento() {
         try {
             Context initContext = new InitialContext();
@@ -820,12 +807,10 @@ public class WordGenerador implements Generador {
             return null;
         }
     }
+    */
 
  
-    /**
-     *
-     * @throws IOException
-     */
+    /*
     private void cargarPlantilla() throws IOException {
         InputStream inputStream
                 = getClass().getClassLoader().getResourceAsStream(RUTA
@@ -833,14 +818,13 @@ public class WordGenerador implements Generador {
 
         plantilla = new XWPFDocument(inputStream);
     }
+    */
 
-    /**
-     * @return @throws IOException
-     */
+    /*
     private ByteArrayOutputStream escribirArchivo() throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         plantilla.write(out);
         return out;
     }
-
+*/
 }

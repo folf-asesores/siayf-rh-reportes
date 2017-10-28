@@ -1,20 +1,28 @@
 /*
- * AdministradorReportes.java
+ * ReporteResource.java
  * Creado el 9/sep/2016 1:37:04 PM
  *
  */
-package siayf.rh.reportes.api;
 
-import siayf.rh.reportes.core.BitacoraReporte;
+package siayf.rh.reportes.core.rs;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.UriInfo;
 
+import siayf.rh.reportes.api.Generador;
+import siayf.rh.reportes.core.BitacoraReporte;
 import siayf.rh.reportes.core.excel.AlmacenReportesExcel;
 import siayf.rh.reportes.core.excel.ExcelGenerador;
 import siayf.rh.reportes.core.jasperreports.AlmacenReportesJasperReports;
@@ -23,6 +31,8 @@ import siayf.rh.reportes.core.txt.AlmacenReportesTxt;
 import siayf.rh.reportes.core.txt.TxtGenerador;
 import siayf.rh.reportes.core.word.AlmacenReporteWord;
 import siayf.rh.reportes.core.word.WordGenerador;
+
+import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
 
 /**
  * <p>
@@ -43,20 +53,24 @@ import siayf.rh.reportes.core.word.WordGenerador;
  * @author Freddy Barrera
  * @author Eduardo Chuc Mex
  */
-public class AdministradorReportes {
+@Path("/")
+public class ReporteResource {
+
+    private static final Logger LOGGER = Logger.getLogger(ReporteResource.class.getName());
+    
+    @Context
+    private UriInfo uriInfo;
 
     private static final String ETAPA_PERSISTENCIA_DE_DATOS = "A guardar en la base de datos";
     private static final String ETAPA_RECUPERACION_DE_DATOS = "Almacenados en la base de datos";
-    private static final String BITACORA_REPORTES_BEAN = "java:module/BitacoraReporteEJB";
-    private static final Logger LOGGER = Logger.getLogger(AdministradorReportes.class.getName());
 
     private final BitacoraReporte bitacoraReporte;
 
     /**
      * Crea una nueva instancia del administrador de reportes.
      */
-    public AdministradorReportes() {
-        bitacoraReporte = getBitacoraReportes();
+    public ReporteResource() {
+        bitacoraReporte = getBean(BitacoraReporte.class);
     }
 
     /**
@@ -64,23 +78,27 @@ public class AdministradorReportes {
      * reporte apartir de un arreglo de parámetros.
      *
      * <p>
-     * Ejemplo de parametros para obtener la referencia.      <code><pre>
+     * Ejemplo de parametros para obtener la referencia.
+     * <code>
+     *  <pre>
      * String[] parametros = new String[] {
      *      "ID_USUARIO", String.valueOf(usuario.getIdUsuario()),
      *      "REPORTE_NOMBRE", nombreReporte,
      *      "TIPO_REPORTE",  "pdf",
      *      ...
      * };
-     * </pre></code>
+     *  </pre>
+     * </code>
      * </p>
      *
-     * @param parametros un arreglo de parámetros.
      * @return una cadena con la referencia para generar el reporte.
      * @throws IllegalArgumentException Si los parametros no son pares.
      * @throws NullPointerException Si los paramtros están nulos o vacios.
      */
-    public String obtenerReferencia(String[] parametros) throws NullPointerException, IllegalArgumentException {
-        Map<String, String> mapaParametros = separarClaveValor(parametros);
+    @POST
+    @Produces(MediaType.TEXT_PLAIN)
+    public String obtenerReferencia() throws NullPointerException, IllegalArgumentException {
+        Map<String, String> mapaParametros = separarClaveValor(uriInfo.getQueryParameters());
         imprimirParametros(mapaParametros, ETAPA_PERSISTENCIA_DE_DATOS);
 
         return bitacoraReporte.obtenerReferencia(mapaParametros);
@@ -94,15 +112,18 @@ public class AdministradorReportes {
      * en la base de datos.
      * @return los bytes que representa el archivo.
      * @throws NullPointerException si la es nula o vacia.
-     * @throws IllegalArgumentException si la cadena no tiene los 32 cáracteres.
+     * @throws IllegalArgumentException si la cadena no tiene los 37 cáracteres.
      */
-    public byte[] obtenerReporte(String referencia) throws NullPointerException, IllegalArgumentException {
+    @POST
+    @Path("{referencia}")
+    @Produces(MediaType.WILDCARD)
+    public byte[] obtenerReporte(@PathParam("referencia") String referencia) throws NullPointerException, IllegalArgumentException {
         if (referencia == null || referencia.trim().isEmpty()) {
             throw new NullPointerException("La referencia está vacia.");
         }
 
-        if ((referencia.length() < 32) || (referencia.length() > 32)) {
-            throw new IllegalArgumentException("La referencia es debe ser de 32 cárcteres.");
+        if ((referencia.length() < 37) || (referencia.length() > 37)) {
+            throw new IllegalArgumentException("La referencia es debe ser de 37 cárcteres.");
         }
 
         Map<String, String> parametros = bitacoraReporte.obtenerParametros(referencia);
@@ -124,10 +145,6 @@ public class AdministradorReportes {
                 }
                 break;
             case "txt":
-                if (new AlmacenReportesJasperReports().extisteReporte(nombreReporte)) {
-                    generador = new JasperReportsGenerador();
-                }
-
                 if (new AlmacenReportesTxt().extisteReporte(nombreReporte)) {
                     generador = new TxtGenerador();
                 }
@@ -148,84 +165,34 @@ public class AdministradorReportes {
     }
 
     /**
-     * Permite obtener el nombre de un reporte que se vaya a generar o se haya
-     * generado mediante la referencia.
+     * Convierte multiples parametros en un par de parametros (en un
+     * <code>Map</code> de clave - valor).
      *
-     * @param referencia cadena que permite recuperar los parametros almacenados
-     * en la base de datos.
-     * @return el nombre del reporte si la referencia es valida.
+     * @param parametros los parametros del reporte a separar.
+     * @return los paramtros separados.
      */
-    public String obtenerNombreReporte(String referencia) {
-        return bitacoraReporte.obtenerNombreReporte(referencia);
-    }
-
-    /**
-     * Permite obtener el tipo de un reporte que se vaya a generar o se haya
-     * generado mediante la referencia.
-     *
-     * <p>
-     * Como tipo de un reporte se debe entender por ejemplo:</p>
-     * <ul>
-     * <li>docx</li>
-     * <li>pdf</li>
-     * <li>txt</li>
-     * <li>xlsx</li>
-     * <li>etc.</li>
-     * </ul>
-     * <p>
-     * <strong>Nota:</strong> el tipo no siempre es la extensión del archivo.
-     * </p>
-     *
-     * @param referencia cadena que permite recuperar los parametros almacenados
-     * en la base de datos.
-     * @return el tipo del reporte.
-     */
-    public String obtenerTipoReporte(String referencia) {
-        return bitacoraReporte.obtenerTipoReporte(referencia);
-    }
-
-    /**
-     * Convierte de manera básica el arreglo de parametros que recibe en un
-     * <code>Map</code> de clave - valor.
-     *
-     * @param parametros los parametrso del reporte a separar.
-     * @return los paramtrso separados.
-     */
-    private Map<String, String> separarClaveValor(String[] parametros)
+    private Map<String, String> separarClaveValor(MultivaluedMap<String, String> parametros)
             throws NullPointerException, IllegalArgumentException {
 
         if (parametros == null) {
             throw new NullPointerException("No se ha encontrado ningún parametro.");
         }
 
-        int tamanyo = parametros.length;
-
-        if (tamanyo == 0) {
-            throw new IllegalArgumentException("Los parámetros no pueden estar vacios.");
-        }
-
-        if ((tamanyo % 2) != 0) {
-            throw new IllegalArgumentException(
-                    "Los parámetros deben tener un valor para que siempre haya una clave y valor");
-        }
-
         Map<String, String> map = new HashMap<>();
+        
+        for (Map.Entry<String, List<String>> parametro : parametros.entrySet()) {
+            String clave = parametro.getKey();
+            String primerValor = parametros.getFirst(clave);
 
-        for (int i = 0; i < tamanyo; i++) {
-            if ((i % 2) == 0) {
-                int iClave = i;
-                int iValor = i + 1;
-
-                String clave = parametros[iClave];
-                if (clave != null) {
-                    clave = clave.trim().toUpperCase().replace(' ', '_');
-                    map.put(clave, parametros[iValor]);
-                }
-            }
+            if (clave != null) {
+                clave = clave.trim().toUpperCase().replace('-', '_');
+                map.put(clave, primerValor);
+            }            
         }
+
         return map;
     }
-
+    
     /**
      * Imprime los detalles de los parametros que del reporte en la bitacora del
      * servidor.
@@ -259,25 +226,6 @@ public class AdministradorReportes {
         }
 
         LOGGER.fine(sb.toString());
-    }
-
-    /**
-     * Obtiene el EJB para persistir la información en la bitacora de los
-     * reportes.
-     *
-     * @return una instancia del EJB de la bitacora de reportes.
-     */
-    private BitacoraReporte getBitacoraReportes() {
-        try {
-            Context initContext = new InitialContext();
-            BitacoraReporte bitacoraReportes = (BitacoraReporte) initContext.lookup(BITACORA_REPORTES_BEAN);
-            return bitacoraReportes;
-        } catch (NamingException ex) {
-            LOGGER.log(Level.SEVERE, "Error al buscar el bean: {0}\n{1}",
-                    new Object[]{BITACORA_REPORTES_BEAN, ex});
-        }
-
-        return null;
     }
 
 }

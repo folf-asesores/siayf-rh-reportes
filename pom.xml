@@ -35,6 +35,10 @@
         
         <!-- maven-surefire-plugin -->
         <maven.surefire.skip>true</maven.surefire.skip>
+        
+        <logging.app.level>INFO</logging.app.level>
+        <logging.console.level>INFO</logging.console.level>
+        <logging.file.level>INFO</logging.file.level>
     </properties>
 
     <dependencyManagement>
@@ -44,15 +48,6 @@
                 <groupId>org.wildfly.bom</groupId>
                 <artifactId>jboss-javaee-7.0-wildfly-with-tools</artifactId>
                 <version>${version.jboss.bom}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            
-            <!-- Test -->
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.1.1.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -163,13 +158,13 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>3.14</version>
+            <version>3.17</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.14</version>
+            <version>3.17</version>
         </dependency>
 
         <!-- Permite manipular archivos PDF -->
@@ -191,7 +186,7 @@
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>6.3.0</version>
+            <version>6.3.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.olap4j</groupId>
@@ -237,9 +232,32 @@
     </dependencies>
 
     <build>
-        <!-- Maven will append the version to the finalName (which is the name 
-            given to the generated war, and hence the context root) -->
-        <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>logging.properties</include>
+                </includes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>${basedir}/src/test/resources</directory>
+                <filtering>false</filtering>
+            </testResource>
+            <testResource>
+                <directory>${basedir}/src/test/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>log4j-jboss.properties</include>
+                </includes>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
@@ -269,6 +287,14 @@
 
     <profiles>
         <profile>
+            <id>development</id>
+            <properties>
+                <logging.app.level>FINE</logging.app.level>
+                <logging.console.level>FINE</logging.console.level>
+                <logging.file.level>FINE</logging.file.level>
+            </properties>
+        </profile>
+        <profile>
             <!-- An optional Arquillian testing profile that executes tests
                 in your WildFly instance -->
             <!-- This profile will start a new WildFly instance, and execute the
@@ -277,7 +303,7 @@
             <id>arq-wildfly-managed</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.wildfly</groupId>
+                    <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
                     <scope>test</scope>
                 </dependency>
@@ -291,7 +317,7 @@
             <id>arq-wildfly-remote</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.wildfly</groupId>
+                    <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-remote</artifactId>
                     <scope>test</scope>
                 </dependency>

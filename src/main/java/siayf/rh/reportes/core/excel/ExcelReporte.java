@@ -1,20 +1,24 @@
 /*
  * ExcelReporte.java
- * Creado el Sep 23, 2016 7:18:25 PM
+ * Creado el 27/Oct/2017 8:18:52 PM
  * 
  */
+
 package siayf.rh.reportes.core.excel;
 
 import siayf.rh.reportes.api.Reporte;
 
+
 /**
- *
- * @author Freddy Barrera
+ * Esta clase ayuda en la creación de reportes de Excel en los que no se emplea
+ * un archivo de Excel como plantilla.
+ * 
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class ExcelReporte extends Reporte {
-    
-    public ExcelReporte(String nombreArchivo, String ruta) {
-        super(nombreArchivo, ruta);
+
+    public ExcelReporte() {
+        super(null, null);
     }
-    
+
 }

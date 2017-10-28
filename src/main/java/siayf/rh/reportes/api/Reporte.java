@@ -31,7 +31,7 @@ public class Reporte {
      * @param nombreArchivo el nombre del reporte o plantilla.
      * @param ruta la ruta en la que se ubica el reporte o plantilla.
      */
-    public Reporte(String nombreArchivo, String ruta) {
+    public Reporte(String ruta, String nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
         this.ruta = ruta;
     }

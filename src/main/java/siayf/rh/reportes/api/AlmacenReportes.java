@@ -7,7 +7,7 @@
 package siayf.rh.reportes.api;
 
 /**
- * Esta interfaz define las caracteristicas deben tener los almacenes de reportes.
+ * Esta interfaz define las características deben tener los almacenes de reportes.
  * 
  * <p>
  * El almacen debe funcionar como su nombre como un depósito para poder 

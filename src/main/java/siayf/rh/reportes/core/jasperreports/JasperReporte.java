@@ -21,7 +21,7 @@ public class JasperReporte extends Reporte {
     private final Map<String, Class<?>> parametrosTipos;
 
     public JasperReporte(String nombreArchivo, String ruta) {
-        super(nombreArchivo, ruta);
+        super(ruta, nombreArchivo);
         subreportes = new HashMap<>();
         parametrosTipos = new HashMap<>();
     }

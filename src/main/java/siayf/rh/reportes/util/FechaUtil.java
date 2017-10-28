@@ -204,6 +204,11 @@ public class FechaUtil {
         }
     }
     
+    public static Date comoDate(java.sql.Date sqlDate) {
+        Date date = new Date(sqlDate.getTime());
+        return date;
+    }
+
     public static Date comoDate(LocalDate localDate) {
         return localDate.toDate();
     }
@@ -212,6 +217,11 @@ public class FechaUtil {
         return localDateTime.toDate();
     }
 
+    public static java.sql.Date comoSqlDate(Date date) {
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        return sqlDate;
+    }
+    
     public static LocalDate comoLocalDate(Date date) {
         return LocalDate.fromDateFields(date);
     }

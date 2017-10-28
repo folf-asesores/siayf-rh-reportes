@@ -74,7 +74,7 @@ public class BitacoraReporteBean implements BitacoraReporte {
             reporteParametros.add(reporteParametro);
         }
 
-        String uuid = UUID.randomUUID().toString().substring(0, 32);
+        String uuid = UUID.randomUUID().toString();
         entidad.setIdReferencia(uuid);
         Date fecha = Calendar.getInstance().getTime();
         entidad.setFechaGeneracion(fecha);
@@ -107,18 +107,6 @@ public class BitacoraReporteBean implements BitacoraReporte {
         }
         
         return parametros;
-    }
-
-    @Override
-    public String obtenerNombreReporte(String referencia) {
-        Map<String, String> parametros = obtenerParametros(referencia);
-        return parametros.get("REPORTE_NOMBRE");
-    }
-
-    @Override
-    public String obtenerTipoReporte(String referencia) {
-        Map<String, String> parametros = obtenerParametros(referencia);
-        return parametros.get("TIPO_REPORTE");
     }
 
 }

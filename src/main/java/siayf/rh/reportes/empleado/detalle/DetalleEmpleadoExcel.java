@@ -4,21 +4,14 @@
 
 package siayf.rh.reportes.empleado.detalle;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import siayf.rh.reportes.core.excel.ReporteVacio;
+import siayf.rh.reportes.core.excel.ExcelPlantillaReporte;
 import siayf.rh.reportes.util.FechaUtil;
 import siayf.rh.reportes.util.NumeroUtil;
 
@@ -26,20 +19,11 @@ import siayf.rh.reportes.util.NumeroUtil;
  *
  * @author Eduardo Chuc Mex
  */
-public class DetalleEmpleadoExcel implements Serializable {
+public class DetalleEmpleadoExcel extends ExcelPlantillaReporte<DetalleEmpleadoDto> implements Serializable {
 
     private static final long serialVersionUID = -467008949119374655L;
     private static final Logger LOGGER = Logger.getLogger(DetalleEmpleadoExcel.class.getName());
 
-    private final InputStream is = DetalleEmpleadoExcel.class
-            .getResourceAsStream("/plantillas/empleado/Detalle_Empleado.xlsx");
-
-    /** El nombre de la hoja donde se encuentra el detalle. */
-    private static final String NOMBRE_HOJA = "DETALLE_EMPLEADO";
-    /** Instancia de la plantilla de Excel en memoria. */
-    private Workbook libro;
-    /** Instancia que representa la hoja de Excel en la que se esta trabajando. */
-    private Sheet hoja;
     /** Fila en la que se iniciara a escribir los detalles. */
     private static final int FILA_INICIO_DETALLE = 1;
 
@@ -109,58 +93,12 @@ public class DetalleEmpleadoExcel implements Serializable {
     private static final int TIPO_TABULADOR_DESCRIPCION = 63;
     private static final int TIPO_PERIODO = 64;
 
-    /**
-     * Este método carga de la plantilla y prepara el libro y la hoja que se
-     * pueda usaer.
-     *
-     * @throws IOException en caso de que no se encuentre el archivo o este
-     * dañado lanzara esta excepción.
-     */
-    private void cargarPlantilla() throws IOException {
-        libro = new XSSFWorkbook(is);
-        hoja = libro.getSheet(NOMBRE_HOJA);
+    public DetalleEmpleadoExcel() {
+        super("/plantillas/empleado/", "Detalle_Empleado.xlsx", "DETALLE_EMPLEADO");
     }
 
-    /**
-     * Devuelve el contenido del archivo cargado como un arreglo de bytes.
-     *
-     * @return los bytes que representan el archivo.
-     * @throws IOException en caso de no poder tener acceso al archivo se
-     * lanzara esta excepción.
-     */
-    private byte[] obtenerBytes() throws IOException {
-        byte[] bytes;
-
-        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
-            libro.write(byteArrayOutputStream);
-            bytes = byteArrayOutputStream.toByteArray();
-            libro.close();
-            is.close();
-        }
-
-        return bytes;
-    }
-
-    /**
-     * Permite crear un reporte con los detalle con una lista de acumulados.
-     *
-     * @param detalles una lista de comisionado o licencia.
-     * @return un arreglo de bytes que representa el archivo de excel.
-     */
-    public byte[] generar(List<DetalleEmpleadoDto> detalles) {
-        try {
-
-            cargarPlantilla();
-            llenarDetalles(detalles);
-
-            return obtenerBytes();
-        } catch (IOException ex) {
-            LOGGER.log(Level.SEVERE, "Ocurrio un error al cargar la plantilla.\n{0}", ex);
-            return ReporteVacio.obtenerBytes();
-        }
-    }
-
-    private void llenarDetalles(List<DetalleEmpleadoDto> estructura) {
+    @Override
+    protected void llenarDetalles(List<DetalleEmpleadoDto> estructura) {
         int i = FILA_INICIO_DETALLE;
 
         for (DetalleEmpleadoDto detalle : estructura) {
