@@ -6,14 +6,12 @@
 package siayf.rh.reportes.core.txt;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
-import org.jboss.logging.Logger;
+import siayf.rh.reportes.api.Archivo;
 
 import siayf.rh.reportes.api.Generador;
+import siayf.rh.reportes.util.TipoArchivo;
 /*
 import siayf.rh.reportes.nomina.comprobante.ComprobanteEmpleado;
 import siayf.rh.reportes.nomina.dispersion.Dispersion;
@@ -30,14 +28,10 @@ public class TxtGenerador implements Generador {
 
     private static final Logger LOGGER = Logger.getLogger(TxtGenerador.class.getName());
 
-    private static final String COMPROBANTE_BEAN = "java:module/ComprobanteEmpleadoBean";
-    private static final String DISPERSION_BEAN = "java:module/DispersionEJB";
-    private static final String PRENOMINA_BEAN = "java:module/PrenominaReporteEJB";
-    private static final String FIRMA_BEAN = "java:module/FirmaBean";
     private static final long serialVersionUID = -763514407303196779L;
 
     @Override
-    public byte[] obtenerReporte(Map<String, String> parametros) {
+    public Archivo obtenerReporte(Map<String, String> parametros) {
         AlmacenReportesTxt almacen = new AlmacenReportesTxt();
         String nombreReporte = parametros.get("REPORTE_NOMBRE");
 
@@ -75,34 +69,10 @@ public class TxtGenerador implements Generador {
         
         // TODO: Agregar la genaración de reporte vacio en caso de que sea null.
 
-        return bytes;
+        String nombre = nombreReporte + TipoArchivo.TXT.getExtension(true);
+        String mediaType = TipoArchivo.TXT.getMIMEType();
+        
+        return new Archivo(nombre, mediaType, bytes);
     }
 
-    private <T> T getBean(Class<T> clase) {
-        String bean = "";
-        try {
-            switch (clase.getName()) {
-                case "mx.gob.saludtlax.rh.nomina.reportes.comprobante.ComprobanteEmpleado":
-                    bean = COMPROBANTE_BEAN;
-                    break;
-                case "mx.gob.saludtlax.rh.nomina.reportes.dispersion.Dispersion":
-                    bean = DISPERSION_BEAN;
-                    break;
-                case "mx.gob.saludtlax.rh.nomina.reportes.firma.Firma":
-                    bean = FIRMA_BEAN;
-                    break;
-                case "mx.gob.saludtlax.rh.nomina.reportes.prenomina.PrenominaReporte":
-                    bean = PRENOMINA_BEAN;
-                    break;
-                default:
-                    return null;
-            }
-
-            Context initContext = new InitialContext();
-            return (T) initContext.lookup(bean);
-        } catch (NamingException ex) {
-            LOGGER.errorv("Error al buscar el bean: {0}\t{1}", bean, ex.getCause());
-            return null;
-        }
-    }
 }

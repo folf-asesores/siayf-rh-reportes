@@ -21,6 +21,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import siayf.rh.reportes.api.Archivo;
 
 import siayf.rh.reportes.api.Generador;
 import siayf.rh.reportes.core.BitacoraReporte;
@@ -134,45 +135,37 @@ public class ReporteResource {
         String nombreReporte = parametros.get("REPORTE_NOMBRE");
         String tipoReporte = parametros.get("TIPO_REPORTE");
         Generador generador = null;
-        String nombreArchivo =  null;
-        String mediaType = null;
 
         switch (tipoReporte) {
             case "docx":
                 if (new AlmacenReporteWord().extisteReporte(nombreReporte)) {
                     generador = new WordGenerador();
-                    nombreArchivo = nombreReporte + TipoArchivo.DOCX.getExtension(true);
-                    mediaType = TipoArchivo.DOCX.getMIMEType();
                 }
                 break;
             case "pdf":
                 if (new AlmacenReportesJasperReports().extisteReporte(nombreReporte)) {
                     generador = new JasperReportsGenerador();
-                    nombreArchivo = nombreReporte + TipoArchivo.PDF.getExtension(true);
-                    mediaType = TipoArchivo.PDF.getMIMEType();
                 }
                 break;
             case "txt":
                 if (new AlmacenReportesTxt().extisteReporte(nombreReporte)) {
                     generador = new TxtGenerador();
-                    nombreArchivo = nombreReporte + TipoArchivo.TXT.getExtension(true);
-                    mediaType = TipoArchivo.TXT.getMIMEType();
                 }
                 break;
             case "xlsx":
                 if (new AlmacenReportesExcel().extisteReporte(nombreReporte)) {
                     generador = new ExcelGenerador();
-                    nombreArchivo = nombreReporte + TipoArchivo.XLSX.getExtension(true);
-                    mediaType = TipoArchivo.XLSX.getMIMEType();
                 }
                 break;
         }
 
         if (generador != null) {
-        return Response.ok()
-                .entity(generador.obtenerReporte(parametros))
-                .header("Content-Disposition", "attachment; filename=\"" + nombreArchivo + "\"")
-                .header("Content-Type", mediaType).build();
+            Archivo reporte = generador.obtenerReporte(parametros);
+            return Response.ok()
+                    .entity(reporte.getBytes())
+                    .header("Content-Disposition", "attachment; filename=\"" + reporte.getNombre() + "\"")
+                    .header("Content-Type", reporte.getMediaType())
+                    .build();
         } else {
             LOGGER.log(Level.WARNING, "El reporte {0} de tipo {1} no se ha encontrado.", new Object[]{nombreReporte, tipoReporte});
             return Response.status(Response.Status.NOT_FOUND).build();

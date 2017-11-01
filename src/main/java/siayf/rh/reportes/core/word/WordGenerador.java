@@ -1,33 +1,15 @@
 /*
  * 
  */
+
 package siayf.rh.reportes.core.word;
 
-import java.text.DateFormat;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
+import siayf.rh.reportes.api.Archivo;
 import siayf.rh.reportes.api.Generador;
-/*
-import mx.gob.saludtlax.rh.contrato.Contrato;
-import mx.gob.saludtlax.rh.contrato.ContratoDTO;
-import mx.gob.saludtlax.rh.empleados.nombramientos.Nombramiento;
-import mx.gob.saludtlax.rh.empleados.nombramientos.NombramientoInterinatoDTO;
-import mx.gob.saludtlax.rh.empleados.nombramientos.impresion.NombramientoDetalleDTO;
-import mx.gob.saludtlax.rh.reporteslaborales.cambio.CambioAdscripcionDTO;
-import mx.gob.saludtlax.rh.reporteslaborales.comision.ComisionOficialDTO;
-import mx.gob.saludtlax.rh.reporteslaborales.reincorporacion.ReincorporacionBaseDTO;
-import mx.gob.saludtlax.rh.reporteslaborales.comision.ComisionEJB;
-import mx.gob.saludtlax.rh.reporteslaborales.reservacion.ReservacionDTO;
-import mx.gob.saludtlax.rh.reporteslaborales.termino.TerminoDTO;
-import mx.gob.saludtlax.rh.util.FechaUtil;
-import mx.gob.saludtlax.rh.util.NumeroALetra;
-import mx.gob.saludtlax.rh.util.NumeroUtil;
-*/
-
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.jboss.logging.Logger;
-
+import siayf.rh.reportes.util.TipoArchivo;
 
 /**
  * @author Eduardo Chuc Mex
@@ -38,34 +20,8 @@ public class WordGenerador implements Generador {
     private static final long serialVersionUID = 5975770773471168473L;
     private static final Logger LOGGER = Logger.getLogger(WordGenerador.class.getName());
 
-    private static final String CONTRATO_BEAN = "java:module/ContratoEJB";
-    private static final String NOMBRAMIENTO_BEAN = "java:module/NombramientoEJB";
-    private static final String COMISION_BEAN = "java:module/ComisionEJB";
-    private static final String HOME = System.getProperty("user.home");
-    private static final String RUTA = "plantillas/nombramiento/";
-    private static String PLANTILLA = "";
-    private XWPFDocument plantilla;
-    private static final char SIGNO_APERTURA = '\u00AB';
-    private static final char SIGNO_CIERRE = '\u00BB';
-    private static final Map<String, String> CAMPOS = new HashMap<String, String>();
-    private static final DateFormat FORMATO_FECHA = DateFormat.getDateInstance(DateFormat.LONG);
-    
-    private static DateFormat formatFecha = DateFormat.getDateInstance(DateFormat.LONG);
-    private static Integer idNombramientoGenerico = 0;
-    private static Integer idClasificacion = 0;
-    /*
-    private static NombramientoDetalleDTO nombramientoDTO;
-    private static NombramientoInterinatoDTO nombramientoInterinatoDTO;
-    private static ComisionOficialDTO comisionOficialDTO;
-    private static CambioAdscripcionDTO cambioAdscripcionDTO;
-    private static ReincorporacionBaseDTO reincorporacionBaseDTO;
-    private static ReservacionDTO reservacionDTO;
-    private static TerminoDTO terminoDTO;
-    */
-
     @Override
-    public byte[] obtenerReporte(Map<String, String> parametros) {
-
+    public Archivo obtenerReporte(Map<String, String> parametros) {
         AlmacenReporteWord almacen = new AlmacenReporteWord();
         String nombreReporte = parametros.get("REPORTE_NOMBRE");
 
@@ -777,54 +733,10 @@ public class WordGenerador implements Generador {
             LOGGER.errorv("Ocurrio un error al generar el documento: {0}", ex);
         }
 */
-        return bytes;
+        String nombre = nombreReporte + TipoArchivo.XLSX.getExtension(true);
+        String mediaType = TipoArchivo.XLSX.getMIMEType();
+        
+        return new Archivo(nombre, mediaType, bytes);
     }
 
-    
-/*
-    private Contrato getContrato() {
-        try {
-            Context initContext = new InitialContext();
-            Contrato contratoEmpleado = (Contrato) initContext.lookup(CONTRATO_BEAN);
-
-            return contratoEmpleado;
-        } catch (NamingException ex) {
-            LOGGER.errorv("Error al buscar el bean: {0}\n{1}", CONTRATO_BEAN, ex.getCause());
-            return null;
-        }
-    }
-*/
-
-    /*
-    private Nombramiento getNombramiento() {
-        try {
-            Context initContext = new InitialContext();
-            Nombramiento nombramiento = (Nombramiento) initContext.lookup(NOMBRAMIENTO_BEAN);
-
-            return nombramiento;
-        } catch (NamingException ex) {
-            LOGGER.errorv("Error al buscar el bean: {0}\n{1}", CONTRATO_BEAN, ex.getCause());
-            return null;
-        }
-    }
-    */
-
- 
-    /*
-    private void cargarPlantilla() throws IOException {
-        InputStream inputStream
-                = getClass().getClassLoader().getResourceAsStream(RUTA
-                        + PLANTILLA);
-
-        plantilla = new XWPFDocument(inputStream);
-    }
-    */
-
-    /*
-    private ByteArrayOutputStream escribirArchivo() throws IOException {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        plantilla.write(out);
-        return out;
-    }
-*/
 }

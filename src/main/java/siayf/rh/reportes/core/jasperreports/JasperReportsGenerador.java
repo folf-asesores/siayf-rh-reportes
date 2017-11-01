@@ -10,11 +10,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
-import siayf.rh.reportes.api.Generador;
 import net.sf.jasperreports.engine.JasperReport;
-import org.jboss.logging.Logger;
+
+import siayf.rh.reportes.api.Archivo;
+import siayf.rh.reportes.api.Generador;
 import siayf.rh.reportes.util.FechaUtil;
+import siayf.rh.reportes.util.TipoArchivo;
 
 /**
  * @author Eduardo Mex
@@ -26,7 +29,7 @@ public class JasperReportsGenerador implements Generador {
     private static final Logger LOGGER = Logger.getLogger(JasperReportsGenerador.class.getName());
 
     @Override
-    public byte[] obtenerReporte(Map<String, String> parametros) {
+    public Archivo obtenerReporte(Map<String, String> parametros) {
         AlmacenReportesJasperReports almacen = new AlmacenReportesJasperReports();
 
         String nombreReporte = parametros.get("REPORTE_NOMBRE");
@@ -57,8 +60,11 @@ public class JasperReportsGenerador implements Generador {
         }
 
         JasperReport jr = compilador.compilar(reporte.getInputStream());
-
-        return compilador.generarReporte(jr, parametrosReporte, parametros.get("TIPO_REPORTE"));
+        String nombre = nombreReporte + TipoArchivo.PDF.getExtension(true);
+        String mediaType = TipoArchivo.PDF.getMIMEType();
+        byte [] bytes = compilador.generarReporte(jr, parametrosReporte, parametros.get("TIPO_REPORTE"));
+        
+        return new Archivo(nombre, mediaType, bytes);
     }
 
     public <T> T obtenerValorCasteado(String valor, Class<T> t) {

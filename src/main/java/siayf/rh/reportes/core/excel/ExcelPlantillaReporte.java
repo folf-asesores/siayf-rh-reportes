@@ -94,4 +94,8 @@ public abstract class ExcelPlantillaReporte<T> extends Reporte {
     
     protected abstract void llenarDetalles(List<T> detalles);
 
+    public String getNombreHoja() {
+        return nombreHoja;
+    }
+
 }

@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import siayf.rh.reportes.api.Archivo;
 import siayf.rh.reportes.api.Generador;
 import siayf.rh.reportes.empleado.detalle.DetalleEmpleado;
 import siayf.rh.reportes.empleado.movimiento.cl.ComisionadoLicencia;
@@ -19,27 +20,30 @@ import siayf.rh.reportes.util.PlantillaMensaje;
 
 import static siayf.rh.reportes.util.FechaUtil.PATRON_FECHA_BASE_DE_DATOS;
 import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
+import siayf.rh.reportes.util.TipoArchivo;
 
 /**
  *
  * @author Freddy Barrera
  * @author Eduardo Chuc Mex
  */
-public class ExcelGenerador implements Generador{
+public class ExcelGenerador implements Generador {
 
     private static final long serialVersionUID = -5384835789936086358L;
 
     private static final Logger LOGGER = Logger.getLogger(ExcelGenerador.class.getName());
 
     @Override
-    public byte[] obtenerReporte(Map<String, String> parametros) {
+    public Archivo obtenerReporte(Map<String, String> parametros) {
         AlmacenReportesExcel almacenReportesExcel = new AlmacenReportesExcel();
         String nombreReporte = parametros.get("REPORTE_NOMBRE");
         byte[] bytes = null;
 
         if (almacenReportesExcel.extisteReporte(nombreReporte)) {
             switch (nombreReporte) {
-                // Reporte de empleados
+                // -------------------
+                // Reporte de empleado
+                // -------------------
                 case "detalle_empleado": {
                     Integer idTipoContratacion = Integer.parseInt(parametros.get("ID_TIPO_CONTRATACION"));
                     DetalleEmpleado detalleEmpleadoBean = getBean(DetalleEmpleado.class);
@@ -74,6 +78,30 @@ public class ExcelGenerador implements Generador{
                     }
                 */
                 }
+                
+                // ------------------
+                // Reportes de nomina
+                // ------------------
+                case "producto_nomina_programas": {
+                    Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA")); 
+                /*
+
+                    List<ProductosNominaProgramasExcelDTO> listaProductoNominaProgramas = getProductoNomina()
+                            .obtenerListaProductoNominaProgramasPorIdProducto(idProducto);
+                    List<String> listaProgramas = getProductoNomina()
+                            .obtenerListaProgramasPorIdProducto(idProducto);
+                    ProductoNominaDTO producto = getProductoNomina().obtenerProductoNominaPorIdProducto(idProducto);
+
+                    if (!listaProductoNominaProgramas.isEmpty()) {
+                        ProductoNominaProgramasExcel productoNominaProgramasExcel = new ProductoNominaProgramasExcel();
+                        bytes = productoNominaProgramasExcel.generar(listaProductoNominaProgramas, listaProgramas, producto);
+                    } else {
+                        throw new ReglaNegocioException(
+                                "No se encontrarón resultados en el producto nomina: ",
+                                ReglaNegocioCodigoError.SIN_REGISTRO);
+                    }
+                */
+                }
             }
         }
         
@@ -82,7 +110,10 @@ public class ExcelGenerador implements Generador{
             bytes = ReporteVacio.obtenerBytes();
         }
 
-        return bytes;
+        String nombre = nombreReporte + TipoArchivo.XLSX.getExtension(true);
+        String mediaType = TipoArchivo.XLSX.getMIMEType();
+
+        return new Archivo(nombre, mediaType, bytes);
     }
 
 }
