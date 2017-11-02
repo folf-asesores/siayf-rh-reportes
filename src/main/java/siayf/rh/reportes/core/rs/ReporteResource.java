@@ -21,8 +21,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import siayf.rh.reportes.api.Archivo;
 
+import siayf.rh.reportes.api.Archivo;
 import siayf.rh.reportes.api.Generador;
 import siayf.rh.reportes.core.BitacoraReporte;
 import siayf.rh.reportes.core.excel.AlmacenReportesExcel;
@@ -35,7 +35,6 @@ import siayf.rh.reportes.core.word.AlmacenReporteWord;
 import siayf.rh.reportes.core.word.WordGenerador;
 
 import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
-import siayf.rh.reportes.util.TipoArchivo;
 
 /**
  * <p>
@@ -85,9 +84,9 @@ public class ReporteResource {
      * <code>
      *  <pre>
      * String[] parametros = new String[] {
-     *      "ID_USUARIO", String.valueOf(usuario.getIdUsuario()),
-     *      "REPORTE_NOMBRE", nombreReporte,
-     *      "TIPO_REPORTE",  "pdf",
+     *      "id-usuario", String.valueOf(usuario.getIdUsuario()),
+     *      "reporte-nombre", nombreReporte,
+     *      "tipo-reporte",  "pdf",
      *      ...
      * };
      *  </pre>
@@ -115,7 +114,7 @@ public class ReporteResource {
      * en la base de datos.
      * @return los bytes que representa el archivo.
      * @throws NullPointerException si la es nula o vacia.
-     * @throws IllegalArgumentException si la cadena no tiene los 37 cáracteres.
+     * @throws IllegalArgumentException si la cadena no tiene los 36 cáracteres.
      */
     @POST
     @Path("{referencia}")
@@ -125,8 +124,8 @@ public class ReporteResource {
             throw new NullPointerException("La referencia está vacia.");
         }
 
-        if ((referencia.length() < 37) || (referencia.length() > 37)) {
-            throw new IllegalArgumentException("La referencia es debe ser de 37 cárcteres.");
+        if ((referencia.length() < 36) || (referencia.length() > 36)) {
+            throw new IllegalArgumentException("La referencia es debe ser de 36 cárcteres.");
         }
 
         Map<String, String> parametros = bitacoraReporte.obtenerParametros(referencia);

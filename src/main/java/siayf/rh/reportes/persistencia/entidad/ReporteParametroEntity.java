@@ -3,7 +3,6 @@
  */
 package siayf.rh.reportes.persistencia.entidad;
 
-import siayf.rh.reportes.persistencia.entidad.BitacoraReporteEntity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * @author eduardo
  *
+ * @author Eduardo Chuc Mex
  */
 @Entity
 @Table(name = "reportes_parametros")

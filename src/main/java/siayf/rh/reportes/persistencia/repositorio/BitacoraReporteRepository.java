@@ -3,13 +3,14 @@
  */
 package siayf.rh.reportes.persistencia.repositorio;
 
+import java.util.UUID;
 import siayf.rh.reportes.persistencia.entidad.BitacoraReporteEntity;
 
 /**
- * @author Eduardo Chuc Mex
  *
+ * @author Eduardo Chuc Mex
  */
-public class BitacoraReporteRepository extends GenericRepository<BitacoraReporteEntity, String> {
+public class BitacoraReporteRepository extends GenericRepository<BitacoraReporteEntity, UUID> {
 
     private static final long serialVersionUID = 357048721113404463L;
 

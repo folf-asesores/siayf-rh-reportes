@@ -34,7 +34,7 @@ public class BeanInjectUtil {
     private static final String DISPERSION_BEAN = "java:module/DispersionEJB";
     private static final String PAGO_GENERAL_BEAN = "java:module/PagoGeneralReporteEJB";
     private static final String DISTRIBUCION_PRESUPUESTO_BEAN = "java:module/DistribucionPresupuestoEJB";
-    private static final String PRODUCTO_NOMINA_PROGRAMAS_BEAN = "java:module/ProductoNominaEJB";
+    private static final String PRODUCTO_NOMINA_PROGRAMAS_BEAN = "java:module/ProductoNominaBean";
     
     private BeanInjectUtil() {
     }
@@ -80,6 +80,9 @@ public class BeanInjectUtil {
                     break;
                 case "siayf.rh.reportes.siif.seguropopular.SeguroPopularReporte":
                     bean = SEGURO_POPULAR_REPORTE_BEAN;
+                    break;
+                case "siayf.rh.reportes.nomina.productonomina.ProductoNomina":
+                    bean = PRODUCTO_NOMINA_PROGRAMAS_BEAN;
                     break;
                 default:
                     return null;

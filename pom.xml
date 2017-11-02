@@ -35,10 +35,6 @@
         
         <!-- maven-surefire-plugin -->
         <maven.surefire.skip>true</maven.surefire.skip>
-        
-        <logging.app.level>INFO</logging.app.level>
-        <logging.console.level>INFO</logging.console.level>
-        <logging.file.level>INFO</logging.file.level>
     </properties>
 
     <dependencyManagement>
@@ -88,6 +84,13 @@
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- The core O/RM functionality as provided by Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -220,32 +223,6 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>${basedir}/src/main/resources</directory>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>${basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>logging.properties</include>
-                </includes>
-            </resource>
-        </resources>
-        <testResources>
-            <testResource>
-                <directory>${basedir}/src/test/resources</directory>
-                <filtering>false</filtering>
-            </testResource>
-            <testResource>
-                <directory>${basedir}/src/test/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>log4j-jboss.properties</include>
-                </includes>
-            </testResource>
-        </testResources>
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
@@ -276,11 +253,6 @@
     <profiles>
         <profile>
             <id>development</id>
-            <properties>
-                <logging.app.level>FINE</logging.app.level>
-                <logging.console.level>FINE</logging.console.level>
-                <logging.file.level>FINE</logging.file.level>
-            </properties>
         </profile>
         <profile>
             <!-- An optional Arquillian testing profile that executes tests

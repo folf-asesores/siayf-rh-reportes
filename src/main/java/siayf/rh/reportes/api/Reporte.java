@@ -28,8 +28,8 @@ public class Reporte {
     /**
      * Crea una nueva instancia de un reporte.
      * 
-     * @param nombreArchivo el nombre del reporte o plantilla.
      * @param ruta la ruta en la que se ubica el reporte o plantilla.
+     * @param nombreArchivo el nombre del reporte o plantilla.
      */
     public Reporte(String ruta, String nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
@@ -43,14 +43,14 @@ public class Reporte {
      * o plantilla en caso contrario <code>null</code>.
      */
     public InputStream getInputStream() {
-        LOGGER.log(Level.FINE,"Cargando archivo: {0}", nombreArchivo);
-        InputStream is = getClass().getClassLoader().getResourceAsStream(ruta + nombreArchivo);
+        LOGGER.log(Level.FINE,"Cargando archivo: {0}{1}", new Object[]{ruta, nombreArchivo});
+        InputStream is = Reporte.class.getClassLoader().getResourceAsStream(ruta + nombreArchivo);
 
         if (is == null) {
             LOGGER.log(Level.SEVERE, "El archivo \"{0}\" no se encontro.", nombreArchivo);
+        } else {
+            LOGGER.log(Level.FINE, "El archivo \"{0}\" se ha cargado correctamente.", nombreArchivo);
         }
-
-        LOGGER.log(Level.FINE, "El archivo \"{0}\" se ha cargado correctamente.", nombreArchivo);
 
         return is;
     }

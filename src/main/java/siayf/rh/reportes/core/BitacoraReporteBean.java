@@ -50,6 +50,11 @@ public class BitacoraReporteBean implements BitacoraReporte {
 
         BitacoraReporteEntity entidad = new BitacoraReporteEntity();
         UsuarioEntity  usuario = usuarioRepository.obtenerPorId(Integer.parseInt(parametros.get("ID_USUARIO")));
+
+        if (usuario == null) {
+            throw new IllegalArgumentException("El ID del usuario no es valido.");
+        }
+
         String nombreReporte = parametros.get("REPORTE_NOMBRE");
 
         entidad.setUsuario(usuario);
@@ -74,22 +79,19 @@ public class BitacoraReporteBean implements BitacoraReporte {
             reporteParametros.add(reporteParametro);
         }
 
-        String uuid = UUID.randomUUID().toString();
-        entidad.setIdReferencia(uuid);
         Date fecha = Calendar.getInstance().getTime();
         entidad.setFechaGeneracion(fecha);
-        //entidad.setHoraGeneracion(fecha);
-
+        entidad.setHoraGeneracion(fecha);
         entidad.setReporteParametros(reporteParametros);
 
-        String id = bitacoraReporteRepository.crear(entidad).getIdReferencia();
+        String id = bitacoraReporteRepository.crear(entidad).getIdReferencia().toString();
         return id;
     }
 
     @Override
     public Map<String, String> obtenerParametros(String referencia) {
         Map<String, String> parametros = new HashMap<>();
-        BitacoraReporteEntity bitacoraReporteEntity = bitacoraReporteRepository.obtenerPorId(referencia);
+        BitacoraReporteEntity bitacoraReporteEntity = bitacoraReporteRepository.obtenerPorId(UUID.fromString(referencia));
         
         if (bitacoraReporteEntity == null) {
             LOGGER.warning("No se encontro la entidad");

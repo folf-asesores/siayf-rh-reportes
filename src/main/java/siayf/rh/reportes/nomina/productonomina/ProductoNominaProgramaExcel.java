@@ -53,13 +53,21 @@ public class ProductoNominaProgramaExcel extends ExcelPlantillaReporte<ProductoN
     private static final String PATRON_NOMBRE_HOJA = "Nomina_{0}";
     
     public ProductoNominaProgramaExcel() {
-        super("/plantillas/nomina", "producto-nomina-programas.xlsx", "PRODUCTO_NOMINA_PROGRAMAS");
+        super("siayf/rh/reportes/nomina/", "producto_nomina_programa.xlsx", "PRODUCTO_NOMINA_PROGRAMAS");
     }
 
     // Este método lanzará una excepción porque se creo una sobre carga que se adecua al tipo de reporte.
     @Override
     public byte[] generar(List<ProductoNominaProgramaDto> detalles) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            cargarPlantilla();
+
+            return obtenerBytes();
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, "Ocurrio un error al cargar la plantilla.\n{0}", ex);
+            return ReporteVacio.obtenerBytes();
+        }
+//        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public byte[] generar(List<ProductoNominaProgramaDto> detalles, List<String> programas, Date finPeriodo) {
