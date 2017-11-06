@@ -12,7 +12,7 @@ import java.util.Map;
 import siayf.rh.reportes.api.AlmacenReportes;
 import siayf.rh.reportes.empleado.detalle.DetalleEmpleadoExcel;
 import siayf.rh.reportes.empleado.movimiento.concentrado.ConcentradoAltaBajaExcel;
-import siayf.rh.reportes.nomina.productonomina.ProductoNominaProgramaExcel;
+import siayf.rh.reportes.nomina.producto.ProductoNominaProgramaExcel;
 
 /**
  *

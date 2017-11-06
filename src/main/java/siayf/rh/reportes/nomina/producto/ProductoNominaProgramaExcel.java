@@ -4,11 +4,12 @@
  * 
  */
 
-package siayf.rh.reportes.nomina.productonomina;
+package siayf.rh.reportes.nomina.producto;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.util.WorkbookUtil;
 
 import siayf.rh.reportes.core.excel.ExcelPlantillaReporte;
 import siayf.rh.reportes.core.excel.ReporteVacio;
@@ -50,7 +52,7 @@ public class ProductoNominaProgramaExcel extends ExcelPlantillaReporte<ProductoN
     private static final int COLUMNA_AGUINALDO = 11;
     private static final int COLUMNA_TOTAL = 12;
 
-    private static final String PATRON_NOMBRE_HOJA = "Nomina_{0}";
+    private static final String PATRON_NOMBRE_HOJA = "Nomina_%1$s";
     
     public ProductoNominaProgramaExcel() {
         super("siayf/rh/reportes/nomina/", "producto_nomina_programa.xlsx", "PRODUCTO_NOMINA_PROGRAMAS");
@@ -59,15 +61,7 @@ public class ProductoNominaProgramaExcel extends ExcelPlantillaReporte<ProductoN
     // Este método lanzará una excepción porque se creo una sobre carga que se adecua al tipo de reporte.
     @Override
     public byte[] generar(List<ProductoNominaProgramaDto> detalles) {
-        try {
-            cargarPlantilla();
-
-            return obtenerBytes();
-        } catch (IOException ex) {
-            LOGGER.log(Level.SEVERE, "Ocurrio un error al cargar la plantilla.\n{0}", ex);
-            return ReporteVacio.obtenerBytes();
-        }
-//        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public byte[] generar(List<ProductoNominaProgramaDto> detalles, List<String> programas, Date finPeriodo) {
@@ -92,21 +86,27 @@ public class ProductoNominaProgramaExcel extends ExcelPlantillaReporte<ProductoN
         int i;
         int filaTotales;
         int contador;
-        int cont = 0;
+        int conatador = 0;
         String hojaOriginal = getNombreHoja();
+        List<String> nombreProgramasFederales = new ArrayList<>();
         
         for (String nombreProgramaFederal : programas) {
-            if (cont < programas.size() && programas.size() != 1) {
-                String nombreHojaNueva = String.format(PATRON_NOMBRE_HOJA, nombreProgramaFederal);
+
+            if (nombreProgramaFederal != null && conatador < programas.size() && programas.size() != 1) {
+                String nombreHojaNueva = WorkbookUtil.createSafeSheetName(String.format(PATRON_NOMBRE_HOJA, nombreProgramaFederal), '_');
                 copiarHoja(hojaOriginal, nombreHojaNueva);
+                nombreProgramasFederales.add(nombreProgramaFederal);
+            } else if (nombreProgramaFederal == null) {
+                LOGGER.log(Level.WARNING, "Existe un programa federal con nombre null y no será tomado en cuenta. En la posición {0}", conatador);
             }
-            cont++;
+
+            conatador++;
         }
 
-        cont = 0;
-        for (String programaFed : programas) {
+        conatador = 0;
+        for (String programaFed : nombreProgramasFederales) {
 
-            String nombreHoja = libro.getSheetName(cont + 1);
+            String nombreHoja = libro.getSheetName(conatador + 1);
             hoja = libro.getSheet(nombreHoja);
 
             Row filaEncabezadoPrograma = hoja.getRow(4);
@@ -127,64 +127,66 @@ public class ProductoNominaProgramaExcel extends ExcelPlantillaReporte<ProductoN
             BigDecimal totalIsr = BigDecimal.ZERO;
             BigDecimal totalPensionAlimenticia = BigDecimal.ZERO;
             BigDecimal totales = BigDecimal.ZERO;
+            
+            if (detalles != null) {
 
-            for (ProductoNominaProgramaDto detalle : detalles) {
+                for (ProductoNominaProgramaDto detalle : detalles) {
 
-                if (detalle.getPrograma().compareTo(programaFed) == 0) {
+                    if (detalle != null && detalle.getPrograma() != null && detalle.getPrograma().compareTo(programaFed) == 0) {
 
-                    Row filaDetalle = hoja.createRow(i);
+                        Row filaDetalle = hoja.createRow(i);
 
-                    Cell celdaNum = filaDetalle.createCell(COLUMNA_NUMERO);
-                    celdaNum.setCellValue(contador);
-                    contador += 1;
-                    Cell celdaRfc = filaDetalle.createCell(COLUMNA_RFC);
-                    celdaRfc.setCellValue(detalle.getRfc());
-                    Cell celdaNombreEmpleado = filaDetalle.createCell(COLUMNA_NOMBRE_EMPLEADO);
-                    celdaNombreEmpleado.setCellValue(detalle.getNombreEmpleado());
+                        Cell celdaNum = filaDetalle.createCell(COLUMNA_NUMERO);
+                        celdaNum.setCellValue(contador);
+                        contador += 1;
+                        Cell celdaRfc = filaDetalle.createCell(COLUMNA_RFC);
+                        celdaRfc.setCellValue(detalle.getRfc());
+                        Cell celdaNombreEmpleado = filaDetalle.createCell(COLUMNA_NOMBRE_EMPLEADO);
+                        celdaNombreEmpleado.setCellValue(detalle.getNombreEmpleado());
 
-                    Cell celdaFechaIngreso = filaDetalle.createCell(COULMNA_FECHA_INGRESO);
-                    celdaFechaIngreso.setCellValue(detalle.getFechaIngreso() == null ? ""
-                            : FechaUtil.formatearFecha(detalle.getFechaIngreso(), FechaUtil.PATRON_FECHA_BASE_DE_DATOS));
+                        Cell celdaFechaIngreso = filaDetalle.createCell(COULMNA_FECHA_INGRESO);
+                        celdaFechaIngreso.setCellValue(detalle.getFechaIngreso() == null ? ""
+                                : FechaUtil.formatearFecha(detalle.getFechaIngreso(), FechaUtil.PATRON_FECHA_BASE_DE_DATOS));
 
-                    Cell celdaCentroResponsabilidad = filaDetalle.createCell(COLUMNA_CENTRO_RESPONSABILIDAD);
-                    celdaCentroResponsabilidad.setCellValue(detalle.getCentroResponsabilidad());
+                        Cell celdaCentroResponsabilidad = filaDetalle.createCell(COLUMNA_CENTRO_RESPONSABILIDAD);
+                        celdaCentroResponsabilidad.setCellValue(detalle.getCentroResponsabilidad());
 
-                    Cell celdaPrograma = filaDetalle.createCell(COLUMNA_PROGRAMA);
-                    celdaPrograma.setCellValue(detalle.getPrograma());
+                        Cell celdaPrograma = filaDetalle.createCell(COLUMNA_PROGRAMA);
+                        celdaPrograma.setCellValue(detalle.getPrograma());
 
-                    Cell celdaFuncion = filaDetalle.createCell(COLUMNA_FUNCION);
-                    celdaFuncion.setCellValue(detalle.getFuncion());
+                        Cell celdaFuncion = filaDetalle.createCell(COLUMNA_FUNCION);
+                        celdaFuncion.setCellValue(detalle.getFuncion());
 
-                    Cell sueldo = filaDetalle.createCell(COLUMNA_SUELDO, CellType.NUMERIC);
-                    sueldo.setCellValue((double) (detalle.getSueldo() == null ? 0 : detalle.getSueldo().doubleValue()));
-                    totalSueldo = totalSueldo
-                            .add(detalle.getSueldo() == null ? BigDecimal.ZERO : detalle.getSueldo());
+                        Cell sueldo = filaDetalle.createCell(COLUMNA_SUELDO, CellType.NUMERIC);
+                        sueldo.setCellValue((double) (detalle.getSueldo() == null ? 0 : detalle.getSueldo().doubleValue()));
+                        totalSueldo = totalSueldo
+                                .add(detalle.getSueldo() == null ? BigDecimal.ZERO : detalle.getSueldo());
 
-                    Cell celdaIsr = filaDetalle.createCell(COLUMNA_ISR);
-                    celdaIsr.setCellValue((double) (detalle.getIsr() == null ? 0 : detalle.getIsr().doubleValue()));
-                    totalIsr = totalIsr.add(detalle.getIsr() == null ? BigDecimal.ZERO : detalle.getIsr());
+                        Cell celdaIsr = filaDetalle.createCell(COLUMNA_ISR);
+                        celdaIsr.setCellValue((double) (detalle.getIsr() == null ? 0 : detalle.getIsr().doubleValue()));
+                        totalIsr = totalIsr.add(detalle.getIsr() == null ? BigDecimal.ZERO : detalle.getIsr());
 
-                    Cell celdaPensionAlimenticia = filaDetalle.createCell(COLUMNA_PENSION_ALIMENTICIA);
-                    celdaPensionAlimenticia.setCellValue((double) (detalle.getPensionAlimenticia() == null ? 0
-                            : detalle.getPensionAlimenticia().doubleValue()));
-                    totalPensionAlimenticia = totalPensionAlimenticia.add(detalle.getPensionAlimenticia() == null
-                            ? BigDecimal.ZERO : detalle.getPensionAlimenticia());
+                        Cell celdaPensionAlimenticia = filaDetalle.createCell(COLUMNA_PENSION_ALIMENTICIA);
+                        celdaPensionAlimenticia.setCellValue((double) (detalle.getPensionAlimenticia() == null ? 0
+                                : detalle.getPensionAlimenticia().doubleValue()));
+                        totalPensionAlimenticia = totalPensionAlimenticia.add(detalle.getPensionAlimenticia() == null
+                                ? BigDecimal.ZERO : detalle.getPensionAlimenticia());
 
-                    Cell celdaPrimaVac = filaDetalle.createCell(COLUMNA_PRIMA);
-                    celdaPrimaVac.setCellValue("");
+                        Cell celdaPrimaVac = filaDetalle.createCell(COLUMNA_PRIMA);
+                        celdaPrimaVac.setCellValue("");
 
-                    Cell celdaAguinaldo = filaDetalle.createCell(COLUMNA_AGUINALDO);
-                    celdaAguinaldo.setCellValue("");
+                        Cell celdaAguinaldo = filaDetalle.createCell(COLUMNA_AGUINALDO);
+                        celdaAguinaldo.setCellValue("");
 
-                    Cell celdaTotal = filaDetalle.createCell(COLUMNA_TOTAL);
-                    celdaTotal.setCellValue((double) (detalle.getTotal() == null ? 0 : detalle.getTotal().doubleValue()));
-                    totales = totales.add(detalle.getTotal() == null ? BigDecimal.ZERO : detalle.getTotal());
+                        Cell celdaTotal = filaDetalle.createCell(COLUMNA_TOTAL);
+                        celdaTotal.setCellValue((double) (detalle.getTotal() == null ? 0 : detalle.getTotal().doubleValue()));
+                        totales = totales.add(detalle.getTotal() == null ? BigDecimal.ZERO : detalle.getTotal());
 
-                    filaTotales++;
-                    i++;
-                    hoja.shiftRows(i, i + 1, 1);
+                        filaTotales++;
+                        i++;
+                        hoja.shiftRows(i, i + 1, 1);
+                    }
                 }
-
             }
 
             if (filaTotales > FILA_INICIO_DETALLE) {
@@ -248,7 +250,7 @@ public class ProductoNominaProgramaExcel extends ExcelPlantillaReporte<ProductoN
                 celdaPuesto3.setCellValue("JEFE DEL DEPARTAMENTO DE RECURSOS HUMANOS");
             }
 
-            cont++;
+            conatador++;
         }
 
         libro.removeSheetAt(0);

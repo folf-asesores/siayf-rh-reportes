@@ -12,7 +12,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
+//import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -97,7 +98,7 @@ public class ReporteResource {
      * @throws IllegalArgumentException Si los parametros no son pares.
      * @throws NullPointerException Si los paramtros están nulos o vacios.
      */
-    @POST
+    @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String obtenerReferencia() throws NullPointerException, IllegalArgumentException {
         Map<String, String> mapaParametros = separarClaveValor(uriInfo.getQueryParameters());
@@ -116,10 +117,15 @@ public class ReporteResource {
      * @throws NullPointerException si la es nula o vacia.
      * @throws IllegalArgumentException si la cadena no tiene los 36 cáracteres.
      */
-    @POST
+    @GET
     @Path("{referencia}")
     @Produces(MediaType.WILDCARD)
     public Response obtenerReporte(@PathParam("referencia") String referencia) throws NullPointerException, IllegalArgumentException {
+        if (referencia != null) {
+            RootResource rootResource = new RootResource();
+            return Response.ok(rootResource.getHtml()).type(MediaType.TEXT_HTML).build();
+        }
+        
         if (referencia == null || referencia.trim().isEmpty()) {
             throw new NullPointerException("La referencia está vacia.");
         }
@@ -170,7 +176,7 @@ public class ReporteResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-
+    
     /**
      * Convierte multiples parametros en un par de parametros (en un
      * <code>Map</code> de clave - valor).

@@ -4,7 +4,7 @@
  * 
  */
 
-package siayf.rh.reportes.nomina.productonomina;
+package siayf.rh.reportes.nomina.producto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

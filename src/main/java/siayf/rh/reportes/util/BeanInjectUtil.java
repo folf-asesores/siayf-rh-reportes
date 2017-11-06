@@ -81,7 +81,7 @@ public class BeanInjectUtil {
                 case "siayf.rh.reportes.siif.seguropopular.SeguroPopularReporte":
                     bean = SEGURO_POPULAR_REPORTE_BEAN;
                     break;
-                case "siayf.rh.reportes.nomina.productonomina.ProductoNomina":
+                case "siayf.rh.reportes.nomina.producto.ProductoNomina":
                     bean = PRODUCTO_NOMINA_PROGRAMAS_BEAN;
                     break;
                 default:

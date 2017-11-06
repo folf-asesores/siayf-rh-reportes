@@ -15,7 +15,7 @@ import siayf.rh.reportes.api.Archivo;
 import siayf.rh.reportes.api.Generador;
 import siayf.rh.reportes.empleado.detalle.DetalleEmpleado;
 import siayf.rh.reportes.empleado.movimiento.cl.ComisionadoLicencia;
-import siayf.rh.reportes.nomina.productonomina.ProductoNomina;
+import siayf.rh.reportes.nomina.producto.ProductoNomina;
 import siayf.rh.reportes.util.FechaUtil;
 import siayf.rh.reportes.util.PlantillaMensaje;
 

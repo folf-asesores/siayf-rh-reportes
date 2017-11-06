@@ -3,7 +3,7 @@
  * Creado el 01/nov/2017 6:42:01 AM
  * 
  */
-package siayf.rh.reportes.nomina.productonomina;
+package siayf.rh.reportes.nomina.producto;
 
 import javax.ejb.Local;
 import siayf.rh.reportes.api.Reporteador;
