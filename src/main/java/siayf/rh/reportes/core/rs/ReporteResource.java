@@ -121,11 +121,6 @@ public class ReporteResource {
     @Path("{referencia}")
     @Produces(MediaType.WILDCARD)
     public Response obtenerReporte(@PathParam("referencia") String referencia) throws NullPointerException, IllegalArgumentException {
-        if (referencia != null) {
-            RootResource rootResource = new RootResource();
-            return Response.ok(rootResource.getHtml()).type(MediaType.TEXT_HTML).build();
-        }
-        
         if (referencia == null || referencia.trim().isEmpty()) {
             throw new NullPointerException("La referencia está vacia.");
         }

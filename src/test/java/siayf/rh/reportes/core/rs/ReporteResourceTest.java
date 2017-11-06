@@ -62,11 +62,15 @@ import siayf.rh.reportes.core.excel.ExcelReporte;
 import siayf.rh.reportes.core.excel.ReporteVacio;
 import siayf.rh.reportes.empleado.detalle.DetalleEmpleadoExcel;
 import siayf.rh.reportes.empleado.movimiento.concentrado.ConcentradoAltaBajaExcel;
-import siayf.rh.reportes.nomina.productonomina.ProductoNomina;
-import siayf.rh.reportes.nomina.productonomina.ProductoNominaBean;
-import siayf.rh.reportes.nomina.productonomina.ProductoNominaProgramaDto;
-import siayf.rh.reportes.nomina.productonomina.ProductoNominaProgramaExcel;
+import siayf.rh.reportes.nomina.producto.ProductoNomina;
+import siayf.rh.reportes.nomina.producto.ProductoNominaBean;
+import siayf.rh.reportes.nomina.producto.ProductoNominaProgramaDto;
+import siayf.rh.reportes.nomina.producto.ProductoNominaProgramaExcel;
 import siayf.rh.reportes.util.TipoArchivo;
+
+import org.junit.Ignore;
+import siayf.rh.reportes.nomina.producto.ProductoNominaDto;
+import siayf.rh.reportes.persistencia.consulta.ProductoNominaQuery;
 
 import static org.junit.Assert.*;
 
@@ -123,12 +127,16 @@ public class ReporteResourceTest {
         // Clases del paquete empleado (movimiento - concentrado)
         war.addClass(ConcentradoAltaBajaExcel.class);
         
-        // Clases del paquete nomina (productonomina)
+        // Clases del paquete nomina (producto)
         war.addClass(ProductoNomina.class);
         war.addClass(ProductoNominaBean.class);
+        war.addClass(ProductoNominaDto.class);
         war.addClass(ProductoNominaProgramaDto.class);
         war.addClass(ProductoNominaProgramaExcel.class);
         
+        // Clases del paquete persistencia (consulta)
+        war.addClass(ProductoNominaQuery.class);
+
         // Clases del paquete persistencia (entidad)
         war.addClass(BitacoraReporteEntity.class);
         war.addClass(PerfilUsuarioEntity.class);
@@ -163,6 +171,7 @@ public class ReporteResourceTest {
      * 
      * @param deploymentUrl la URL en la que se está desplegando el WAR de prueba.
      */
+    @Ignore
     @Test
     public void testObtenerReferencia(@ArquillianResource URL deploymentUrl) {
         String uri = deploymentUrl.toString();
