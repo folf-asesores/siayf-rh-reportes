@@ -3,20 +3,6 @@
   <persistence-unit name="siayf-rh-reportes-pu" transaction-type="JTA">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <jta-data-source>java:jboss/datasources/siayf-rh-reportes-ds</jta-data-source>
-    <class>siayf.rh.reportes.persistencia.entidad.BitacoraReporteEntity</class>
-    <class>siayf.rh.reportes.persistencia.entidad.PerfilUsuarioEntity</class>
-    <class>siayf.rh.reportes.persistencia.entidad.ReporteParametroEntity</class>
-    <class>siayf.rh.reportes.persistencia.entidad.UsuarioEntity</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
-    <properties>
-      <property name="hibernate.show_sql" value="false"/>
-      <property name="dialect" value="org.hibernate.dialect.MySQLDialect"/>
-    </properties>
-  </persistence-unit>
-  <persistence-unit name="siayf-rh-reportes-pu__espejo" transaction-type="JTA">
-    <jta-data-source>java:jboss/datasources/siayf-rh-reportes-ds__espejo</jta-data-source>
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.show_sql" value="false"/>
       <property name="dialect" value="org.hibernate.dialect.MySQLDialect"/>

@@ -32,6 +32,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -43,18 +44,6 @@ import siayf.rh.reportes.api.Reporteador;
 import siayf.rh.reportes.core.AplicacionConstantes;
 import siayf.rh.reportes.core.BitacoraReporte;
 import siayf.rh.reportes.core.BitacoraReporteBean;
-import siayf.rh.reportes.persistencia.entidad.BitacoraReporteEntity;
-import siayf.rh.reportes.persistencia.entidad.PerfilUsuarioEntity;
-import siayf.rh.reportes.persistencia.entidad.ReporteParametroEntity;
-import siayf.rh.reportes.persistencia.entidad.UsuarioEntity;
-import siayf.rh.reportes.persistencia.repositorio.BitacoraReporteRepository;
-import siayf.rh.reportes.persistencia.repositorio.GenericRepository;
-import siayf.rh.reportes.persistencia.repositorio.Repository;
-import siayf.rh.reportes.persistencia.repositorio.UsuarioRepository;
-import siayf.rh.reportes.util.BeanInjectUtil;
-import siayf.rh.reportes.util.FechaUtil;
-import siayf.rh.reportes.util.PlantillaMensaje;
-
 import siayf.rh.reportes.core.excel.AlmacenReportesExcel;
 import siayf.rh.reportes.core.excel.ExcelGenerador;
 import siayf.rh.reportes.core.excel.ExcelPlantillaReporte;
@@ -64,13 +53,23 @@ import siayf.rh.reportes.empleado.detalle.DetalleEmpleadoExcel;
 import siayf.rh.reportes.empleado.movimiento.concentrado.ConcentradoAltaBajaExcel;
 import siayf.rh.reportes.nomina.producto.ProductoNomina;
 import siayf.rh.reportes.nomina.producto.ProductoNominaBean;
+import siayf.rh.reportes.nomina.producto.ProductoNominaDto;
 import siayf.rh.reportes.nomina.producto.ProductoNominaProgramaDto;
 import siayf.rh.reportes.nomina.producto.ProductoNominaProgramaExcel;
-import siayf.rh.reportes.util.TipoArchivo;
-
-import org.junit.Ignore;
-import siayf.rh.reportes.nomina.producto.ProductoNominaDto;
 import siayf.rh.reportes.persistencia.consulta.ProductoNominaQuery;
+import siayf.rh.reportes.persistencia.entidad.BitacoraReporteEntity;
+import siayf.rh.reportes.persistencia.entidad.PerfilUsuarioEntity;
+import siayf.rh.reportes.persistencia.entidad.ProductoNominaEntity;
+import siayf.rh.reportes.persistencia.entidad.ReporteParametroEntity;
+import siayf.rh.reportes.persistencia.entidad.UsuarioEntity;
+import siayf.rh.reportes.persistencia.repositorio.BitacoraReporteRepository;
+import siayf.rh.reportes.persistencia.repositorio.GenericRepository;
+import siayf.rh.reportes.persistencia.repositorio.Repository;
+import siayf.rh.reportes.persistencia.repositorio.UsuarioRepository;
+import siayf.rh.reportes.util.BeanInjectUtil;
+import siayf.rh.reportes.util.FechaUtil;
+import siayf.rh.reportes.util.PlantillaMensaje;
+import siayf.rh.reportes.util.TipoArchivo;
 
 import static org.junit.Assert.*;
 
@@ -140,6 +139,7 @@ public class ReporteResourceTest {
         // Clases del paquete persistencia (entidad)
         war.addClass(BitacoraReporteEntity.class);
         war.addClass(PerfilUsuarioEntity.class);
+        war.addClass(ProductoNominaEntity.class);
         war.addClass(ReporteParametroEntity.class);
         war.addClass(UsuarioEntity.class);
 

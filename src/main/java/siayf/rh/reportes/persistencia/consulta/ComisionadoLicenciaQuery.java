@@ -32,7 +32,7 @@ public class ComisionadoLicenciaQuery implements Serializable {
     private static final long serialVersionUID = -9167138009156074828L;
     private static final Logger LOGGER = Logger.getLogger(ComisionadoLicenciaQuery.class.getName());
     
-    @Resource(mappedName = AplicacionConstantes.DATASOURCE_ESPEJO)
+    @Resource(mappedName = AplicacionConstantes.DATASOURCE)
     private DataSource dataSource;
     
     private static final String COLUMNA_TIPO_MOVIMIENTO = "tipoMovimiento";

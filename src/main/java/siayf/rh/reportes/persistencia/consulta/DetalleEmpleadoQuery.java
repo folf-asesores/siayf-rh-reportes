@@ -32,7 +32,7 @@ public class DetalleEmpleadoQuery implements Serializable {
     private static final long serialVersionUID = 4968811924541393668L;
     private static final Logger LOGGER = Logger.getLogger(DetalleEmpleadoQuery.class.getName());
 
-    @Resource(mappedName = AplicacionConstantes.DATASOURCE_ESPEJO)
+    @Resource(mappedName = AplicacionConstantes.DATASOURCE)
     private DataSource dataSource;
 
     private static final String COLUMNA_NOMBRE_COMPLETO = "nombreCompleto";

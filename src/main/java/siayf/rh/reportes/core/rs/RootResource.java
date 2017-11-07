@@ -36,16 +36,16 @@ public class RootResource {
      * Retrieves representation of an instance of siayf.rh.reportes.core.rs.RootResource
      * @return an instance of java.lang.String
      */
-//    @GET
-//    @Produces(MediaType.TEXT_HTML)
-//    public String getHtml() {
-//        return "<!DOCTYPE html>"
-//                + "<html>"
-//                + "<title>siayf-rh-reportes</title>"
-//                + "<body>"
-//                + "<h1>API reportes</h1>"
-//                + "<p>Corriendo correctamente. </p>"
-//                + "</body>"
-//                + "</html>";
-//    }
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    public String getHtml() {
+        return "<!DOCTYPE html>"
+                + "<html>"
+                + "<title>siayf-rh-reportes</title>"
+                + "<body>"
+                + "<h1>API reportes</h1>"
+                + "<p>Corriendo correctamente. </p>"
+                + "</body>"
+                + "</html>";
+    }
 }

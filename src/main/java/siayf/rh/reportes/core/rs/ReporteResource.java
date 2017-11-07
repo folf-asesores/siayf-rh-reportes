@@ -12,8 +12,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.ws.rs.GET;
-//import javax.ws.rs.POST;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -98,7 +97,7 @@ public class ReporteResource {
      * @throws IllegalArgumentException Si los parametros no son pares.
      * @throws NullPointerException Si los paramtros están nulos o vacios.
      */
-    @GET
+    @POST
     @Produces(MediaType.TEXT_PLAIN)
     public String obtenerReferencia() throws NullPointerException, IllegalArgumentException {
         Map<String, String> mapaParametros = separarClaveValor(uriInfo.getQueryParameters());
@@ -117,7 +116,7 @@ public class ReporteResource {
      * @throws NullPointerException si la es nula o vacia.
      * @throws IllegalArgumentException si la cadena no tiene los 36 cáracteres.
      */
-    @GET
+    @POST
     @Path("{referencia}")
     @Produces(MediaType.WILDCARD)
     public Response obtenerReporte(@PathParam("referencia") String referencia) throws NullPointerException, IllegalArgumentException {

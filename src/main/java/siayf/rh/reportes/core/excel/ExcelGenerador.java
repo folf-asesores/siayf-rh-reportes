@@ -58,6 +58,7 @@ public class ExcelGenerador implements Generador {
                     ComisionadoLicencia comisionadoLicenciaBean = getBean(ComisionadoLicencia.class);
                     bytes = comisionadoLicenciaBean.generarReporte(fechaInicial, fechaFinal);
                 }
+                break;
                 
                 case "concentrado_alta_baja": {
                     Integer idTipoContratacionConcentrado = Integer.parseInt(parametros.get("ID_TIPO_CONTRATACION"));
@@ -79,25 +80,24 @@ public class ExcelGenerador implements Generador {
                     }
                 */
                 }
+                break;
                 
                 // ------------------
                 // Reportes de nomina
                 // ------------------
-                case "producto_nomina_programas": {
+                case "producto_nomina": {
                     Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
                     ProductoNomina productoNominaBean = getBean(ProductoNomina.class);
-                    bytes = productoNominaBean.generarReporte(idProductoNomina);
                 /*
 
-                    List<ProductosNominaProgramasExcelDTO> listaProductoNominaProgramas = getProductoNomina()
-                            .obtenerListaProductoNominaProgramasPorIdProducto(idProducto);
-                    List<String> listaProgramas = getProductoNomina()
-                            .obtenerListaProgramasPorIdProducto(idProducto);
-                    ProductoNominaDTO producto = getProductoNomina().obtenerProductoNominaPorIdProducto(idProducto);
+                    Integer idProducto = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
 
-                    if (!listaProductoNominaProgramas.isEmpty()) {
-                        ProductoNominaProgramasExcel productoNominaProgramasExcel = new ProductoNominaProgramasExcel();
-                        bytes = productoNominaProgramasExcel.generar(listaProductoNominaProgramas, listaProgramas, producto);
+                    List<ProductosNominaExcelDTO> listaProductoNomina = getProductoNomina()
+                            .obtenerListaProductoNominaPorIdProducto(idProducto);
+
+                    if (!listaProductoNomina.isEmpty()) {
+                        ProductoNominaExcel productoNominaExcel = new ProductoNominaExcel();
+                        bytes = productoNominaExcel.generar(listaProductoNomina);
                     } else {
                         throw new ReglaNegocioException(
                                 "No se encontrarón resultados en el producto nomina: ",
@@ -105,6 +105,14 @@ public class ExcelGenerador implements Generador {
                     }
                 */
                 }
+                break;
+                
+                case "producto_nomina_programas" : {
+                    Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
+                    ProductoNomina productoNominaBean = getBean(ProductoNomina.class);
+                    bytes = productoNominaBean.generarReporte(true, idProductoNomina);
+                }
+                break;
             }
         }
         
