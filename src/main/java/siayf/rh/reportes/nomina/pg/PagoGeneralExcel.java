@@ -3,7 +3,7 @@
  * Creado el 13/feb/2017 4:41:32 PM
  * 
  */
-package siayf.rh.reportes.nomina.pagogeneral;
+package siayf.rh.reportes.nomina.pg;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -27,13 +27,15 @@ import org.apache.poi.ss.util.DateFormatConverter;
 import org.apache.poi.ss.util.WorkbookUtil;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jboss.logging.Logger;
+
+import siayf.rh.reportes.core.excel.ExcelReporte;
 import siayf.rh.reportes.util.FechaUtil;
 
 /**
  *
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
-public class PagoGeneralExcel implements Serializable {
+public class PagoGeneralExcel extends ExcelReporte implements Serializable {
 
     private static final long serialVersionUID = -5421623153289958107L;
     private static final Logger LOGGER = Logger.getLogger(PagoGeneralExcel.class.getName());

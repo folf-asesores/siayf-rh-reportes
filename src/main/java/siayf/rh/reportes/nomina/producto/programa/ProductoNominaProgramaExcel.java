@@ -1,10 +1,10 @@
 /*
- * ProductoNominaEstatalExcel.java
+ * ProductoNominaProgramaExcel.java
  * Creado el 01/nov/2017 7:18:42 AM
  * 
  */
 
-package siayf.rh.reportes.nomina.producto.estatal;
+package siayf.rh.reportes.nomina.producto.programa;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -29,10 +29,10 @@ import siayf.rh.reportes.util.FechaUtil;
  *
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
-public class ProductoNominaEstatalExcel extends ExcelPlantillaReporte<ProductoNominaEstatalDto> implements Serializable {
+public class ProductoNominaProgramaExcel extends ExcelPlantillaReporte<ProductoNominaProgramaDto> implements Serializable {
 
     private static final long serialVersionUID = 9082692081835328085L;
-    private static final Logger LOGGER = Logger.getLogger(ProductoNominaEstatalExcel.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ProductoNominaProgramaExcel.class.getName());
     
     // Fila en la que inicia el detalle.
     private static final int FILA_INICIO_DETALLE = 8;
@@ -54,17 +54,17 @@ public class ProductoNominaEstatalExcel extends ExcelPlantillaReporte<ProductoNo
 
     private static final String PATRON_NOMBRE_HOJA = "Nomina_%1$s";
     
-    public ProductoNominaEstatalExcel() {
+    public ProductoNominaProgramaExcel() {
         super("siayf/rh/reportes/nomina/", "producto_nomina_programa.xlsx", "PRODUCTO_NOMINA_PROGRAMAS");
     }
 
     // Este método lanzará una excepción porque se creo una sobre carga que se adecua al tipo de reporte.
     @Override
-    public byte[] generar(List<ProductoNominaEstatalDto> detalles) {
+    public byte[] generar(List<ProductoNominaProgramaDto> detalles) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public byte[] generar(List<ProductoNominaEstatalDto> detalles, List<String> programas, Date finPeriodo) {
+    public byte[] generar(List<ProductoNominaProgramaDto> detalles, List<String> programas, Date finPeriodo) {
         try {
             cargarPlantilla();
             llenarDetalles(detalles, programas, finPeriodo);
@@ -78,11 +78,11 @@ public class ProductoNominaEstatalExcel extends ExcelPlantillaReporte<ProductoNo
 
     // Este método lanzará una excepción porque se creo una sobre carga que se adecua al tipo de reporte.
     @Override
-    protected void llenarDetalles(List<ProductoNominaEstatalDto> detalles) {
+    protected void llenarDetalles(List<ProductoNominaProgramaDto> detalles) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    protected void llenarDetalles(List<ProductoNominaEstatalDto> detalles, List<String> programas, Date finPeriodo) {
+    protected void llenarDetalles(List<ProductoNominaProgramaDto> detalles, List<String> programas, Date finPeriodo) {
         int i;
         int filaTotales;
         int contador;
@@ -130,7 +130,7 @@ public class ProductoNominaEstatalExcel extends ExcelPlantillaReporte<ProductoNo
             
             if (detalles != null) {
 
-                for (ProductoNominaEstatalDto detalle : detalles) {
+                for (ProductoNominaProgramaDto detalle : detalles) {
 
                     if (detalle != null && detalle.getPrograma() != null && detalle.getPrograma().compareTo(programaFed) == 0) {
 

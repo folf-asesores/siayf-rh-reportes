@@ -1,5 +1,5 @@
 /*
- * ProductoNominaQuery.java
+ * ProductoNominaProgramaQuery.java
  * Creado el 05/nov/2017 6:46:31 PM
  * 
  */
@@ -18,13 +18,13 @@ import org.hibernate.Session;
 import org.hibernate.transform.Transformers;
 
 import siayf.rh.reportes.core.AplicacionConstantes;
-import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatalDto;
+import siayf.rh.reportes.nomina.producto.programa.ProductoNominaProgramaDto;
 
 /**
  *
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
-public class ProductoNominaQuery {
+public class ProductoNominaProgramaQuery {
     
     @PersistenceContext(unitName = AplicacionConstantes.UNIDAD_PERSISTENCIA)
     private EntityManager entityManager;
@@ -38,12 +38,12 @@ public class ProductoNominaQuery {
             + "  from ProductoNominaEntity as productoNomina"
             + " where productoNomina.idProductoNomina = :idProductoNomina";
 
-    public List<ProductoNominaEstatalDto> obtenerProductoNominaProgramasPorIdProducto(Integer idProductoNomina) {
+    public List<ProductoNominaProgramaDto> obtenerProductoNominaProgramasPorIdProducto(Integer idProductoNomina) {
         Session session = entityManager.unwrap(Session.class);
         Query query = session.createSQLQuery(OBTENER_PRODUCTO_NOMINA_PROGRAMAS_POR_ID_PRODUCTO_DE_NOMINA);
         query.setParameter("idProducto", idProductoNomina);
-        query.setResultTransformer(Transformers.aliasToBean(ProductoNominaEstatalDto.class));
-        List<ProductoNominaEstatalDto> detalles = query.list();
+        query.setResultTransformer(Transformers.aliasToBean(ProductoNominaProgramaDto.class));
+        List<ProductoNominaProgramaDto> detalles = query.list();
 
         return detalles;
     }

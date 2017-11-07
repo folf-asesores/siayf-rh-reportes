@@ -3,7 +3,7 @@
  * Creado el 13/feb/2017 5:02:48 PM
  * 
  */
-package siayf.rh.reportes.nomina.pagogeneral;
+package siayf.rh.reportes.nomina.pg;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

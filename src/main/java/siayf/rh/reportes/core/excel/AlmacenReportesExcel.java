@@ -10,41 +10,42 @@ import java.util.HashMap;
 import java.util.Map;
 
 import siayf.rh.reportes.api.AlmacenReportes;
+import siayf.rh.reportes.api.Reporte;
 import siayf.rh.reportes.empleado.detalle.DetalleEmpleadoExcel;
 import siayf.rh.reportes.empleado.movimiento.concentrado.ConcentradoAltaBajaExcel;
-import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatalExcel;
+import siayf.rh.reportes.nomina.pg.PagoGeneralExcel;
+import siayf.rh.reportes.nomina.producto.programa.ProductoNominaProgramaExcel;
 
 /**
  *
  * @author Freddy Barrera
  */
-public class AlmacenReportesExcel implements AlmacenReportes<ExcelPlantillaReporte> {
+public class AlmacenReportesExcel implements AlmacenReportes<Reporte> {
 
-    private static final Map<String, ExcelPlantillaReporte> REPORTES;
+    private static final Map<String, Reporte> REPORTES;
 
     static {
         REPORTES = new HashMap<>();
         
-        // --------------------
-        // Reportes de empleado
-        // --------------------
+        // Reportes de empleado ===============================================
         DetalleEmpleadoExcel detalleEmpleado = new DetalleEmpleadoExcel();
         REPORTES.put("detalle_empleado", detalleEmpleado);
         
         ConcentradoAltaBajaExcel concentradoAltaBaja = new ConcentradoAltaBajaExcel();
         REPORTES.put("concentrado_alta_baja", concentradoAltaBaja);
-        
-        // ------------------
-        // Reportes de nómina
-        // ------------------
-        ProductoNominaEstatalExcel productoNominaPrograma = new ProductoNominaEstatalExcel();
+
+        // Reportes de nómina =================================================
+        ProductoNominaProgramaExcel productoNominaPrograma = new ProductoNominaProgramaExcel();
         REPORTES.put("producto_nomina_programas", productoNominaPrograma);
+        
+        PagoGeneralExcel pagoGeneralExcel = new PagoGeneralExcel();
+        REPORTES.put("pago_general", pagoGeneralExcel);
 
 
     }
 
     @Override
-    public ExcelPlantillaReporte obtenerReporte(String nombreReporte) {
+    public Reporte obtenerReporte(String nombreReporte) {
         return REPORTES.get(nombreReporte);
     }
 

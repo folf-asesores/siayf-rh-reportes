@@ -3,7 +3,7 @@
  * Creado el 15/feb/2017 5:20:53 AM
  * 
  */
-package siayf.rh.reportes.nomina.pagogeneral;
+package siayf.rh.reportes.nomina.pg;
 
 import siayf.rh.reportes.persistencia.consulta.PagoGeneralQuery;
 import java.io.IOException;
@@ -29,9 +29,11 @@ public class PagoGeneralBean implements PagoGeneral {
     private PagoGeneralQuery pagoGeneralService;
     @Inject
     private PagoGeneralExcel pagoGeneralExcelService;
-    
+
     @Override
-    public byte [] generarReporte(Integer idProductoNomina) {
+    public byte [] generarReporte(Object... parametros) {
+        Integer idProductoNomina = (Integer) parametros[0];
+        
         if(ValidacionUtil.esNumeroNegativo(idProductoNomina)) {
             throw new IllegalArgumentException("El ID del producto de nomina no puede ser cero o menor que uno");
         }
@@ -47,4 +49,5 @@ public class PagoGeneralBean implements PagoGeneral {
             return null;
         }
     }
+
 }

@@ -53,11 +53,10 @@ import siayf.rh.reportes.core.excel.ExcelReporte;
 import siayf.rh.reportes.core.excel.ReporteVacio;
 import siayf.rh.reportes.empleado.detalle.DetalleEmpleadoExcel;
 import siayf.rh.reportes.empleado.movimiento.concentrado.ConcentradoAltaBajaExcel;
-import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatal;
-import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatalBean;
-import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatalDto;
-import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatalExcel;
-import siayf.rh.reportes.persistencia.consulta.ProductoNominaQuery;
+import siayf.rh.reportes.nomina.producto.programa.ProductoNominaProgramaBean;
+import siayf.rh.reportes.nomina.producto.programa.ProductoNominaProgramaDto;
+import siayf.rh.reportes.nomina.producto.programa.ProductoNominaProgramaExcel;
+import siayf.rh.reportes.persistencia.consulta.ProductoNominaProgramaQuery;
 import siayf.rh.reportes.persistencia.entidad.BitacoraReporteEntity;
 import siayf.rh.reportes.persistencia.entidad.PerfilUsuarioEntity;
 import siayf.rh.reportes.persistencia.entidad.ProductoNominaEntity;
@@ -73,6 +72,7 @@ import siayf.rh.reportes.util.PlantillaMensaje;
 import siayf.rh.reportes.util.TipoArchivo;
 
 import static org.junit.Assert.*;
+import siayf.rh.reportes.nomina.producto.programa.ProductoNominaPrograma;
 
 /**
  * Este clase prueba el recurso para el consumo de reportes.
@@ -128,14 +128,14 @@ public class ReporteResourceTest {
         war.addClass(ConcentradoAltaBajaExcel.class);
         
         // Clases del paquete nomina (producto)
-        war.addClass(ProductoNominaEstatal.class);
-        war.addClass(ProductoNominaEstatalBean.class);
-        war.addClass(ProductoNominaEstatalDto.class);
-        war.addClass(ProductoNominaEstatalDto.class);
-        war.addClass(ProductoNominaEstatalExcel.class);
+        war.addClass(ProductoNominaPrograma.class);
+        war.addClass(ProductoNominaProgramaBean.class);
+        war.addClass(ProductoNominaProgramaDto.class);
+        war.addClass(ProductoNominaProgramaDto.class);
+        war.addClass(ProductoNominaProgramaExcel.class);
         
         // Clases del paquete persistencia (consulta)
-        war.addClass(ProductoNominaQuery.class);
+        war.addClass(ProductoNominaProgramaQuery.class);
 
         // Clases del paquete persistencia (entidad)
         war.addClass(BitacoraReporteEntity.class);

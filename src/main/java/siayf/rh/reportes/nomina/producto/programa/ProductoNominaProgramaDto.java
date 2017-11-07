@@ -1,10 +1,10 @@
 /*
- * ProductoNominaEstatalDto.java
+ * ProductoNominaProgramaDto.java
  * Creado el
  * 
  */
 
-package siayf.rh.reportes.nomina.producto.estatal;
+package siayf.rh.reportes.nomina.producto.programa;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ import java.util.Objects;
  *
  * @author Eduardo Chuc Mex
  */
-public class ProductoNominaEstatalDto implements Serializable {
+public class ProductoNominaProgramaDto implements Serializable {
 
     private static final long serialVersionUID = -4410052793284349728L;
 
@@ -30,7 +30,7 @@ public class ProductoNominaEstatalDto implements Serializable {
     private BigDecimal isr;
     private BigDecimal pensionAlimenticia;
 
-    public ProductoNominaEstatalDto() {
+    public ProductoNominaProgramaDto() {
         rfc = "";
         nombreEmpleado = "";
         fechaIngreso = Calendar.getInstance().getTime();
@@ -175,7 +175,7 @@ public class ProductoNominaEstatalDto implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ProductoNominaEstatalDto other = (ProductoNominaEstatalDto) obj;
+        final ProductoNominaProgramaDto other = (ProductoNominaProgramaDto) obj;
         if (!Objects.equals(this.rfc, other.rfc)) {
             return false;
         }

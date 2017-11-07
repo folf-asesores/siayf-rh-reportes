@@ -15,13 +15,14 @@ import siayf.rh.reportes.api.Archivo;
 import siayf.rh.reportes.api.Generador;
 import siayf.rh.reportes.empleado.detalle.DetalleEmpleado;
 import siayf.rh.reportes.empleado.movimiento.cl.ComisionadoLicencia;
+import siayf.rh.reportes.nomina.pg.PagoGeneral;
+import siayf.rh.reportes.nomina.producto.programa.ProductoNominaPrograma;
 import siayf.rh.reportes.util.FechaUtil;
 import siayf.rh.reportes.util.PlantillaMensaje;
 
 import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
 import static siayf.rh.reportes.util.FechaUtil.PATRON_FECHA_BASE_DE_DATOS;
 import static siayf.rh.reportes.util.TipoArchivo.XLSX;
-import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatal;
 
 /**
  *
@@ -42,9 +43,7 @@ public class ExcelGenerador implements Generador {
 
         if (almacenReportesExcel.extisteReporte(nombreReporte)) {
             switch (nombreReporte) {
-                // -------------------
-                // Reporte de empleado
-                // -------------------
+                // Reportes de empleado. ======================================
                 case "detalle_empleado": {
                     Integer idTipoContratacion = Integer.parseInt(parametros.get("ID_TIPO_CONTRATACION"));
                     DetalleEmpleado detalleEmpleadoBean = getBean(DetalleEmpleado.class);
@@ -64,55 +63,28 @@ public class ExcelGenerador implements Generador {
                     Integer idTipoContratacionConcentrado = Integer.parseInt(parametros.get("ID_TIPO_CONTRATACION"));
                     Date fechaInicial = FechaUtil.comoDate(parametros.get("FECHA_INICIAL"), PATRON_FECHA_BASE_DE_DATOS);
                     Date fechaFinal = FechaUtil.comoDate(parametros.get("FECHA_FINAL"), PATRON_FECHA_BASE_DE_DATOS);
-                /*
-
-                    List<ConsentradoAltaBajaExcelDTO> consentradoAltaBajaExcelDTOs = getMovimientoEmpleadoReporteService()
-                            .listaConsultaConsentradoAltaBajaPorRangoFecha(idTipoContratacionConsentrado, fechaInicial,
-                                    fechaFinal);
-
-                    if (!consentradoAltaBajaExcelDTOs.isEmpty()) {
-                        ConsentradoAltaBajaExcel consentradoAltaBajaExcel = new ConsentradoAltaBajaExcel();
-
-                        bytes = consentradoAltaBajaExcel.generar(consentradoAltaBajaExcelDTOs);
-                    } else {
-                        throw new ReglaNegocioException("No se encontrarón resultados, intentelo de nuevo.",
-                                ReglaNegocioCodigoError.SIN_REGISTRO);
-                    }
-                */
                 }
                 break;
                 
-                // ------------------
-                // Reportes de nomina
-                // ------------------
+                // Reportes de nómina. ========================================
                 case "producto_nomina": {
                     Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
-                    ProductoNominaEstatal productoNominaBean = getBean(ProductoNominaEstatal.class);
-                /*
-
-                    Integer idProducto = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
-
-                    List<ProductosNominaExcelDTO> listaProductoNomina = getProductoNomina()
-                            .obtenerListaProductoNominaPorIdProducto(idProducto);
-
-                    if (!listaProductoNomina.isEmpty()) {
-                        ProductoNominaExcel productoNominaExcel = new ProductoNominaExcel();
-                        bytes = productoNominaExcel.generar(listaProductoNomina);
-                    } else {
-                        throw new ReglaNegocioException(
-                                "No se encontrarón resultados en el producto nomina: ",
-                                ReglaNegocioCodigoError.SIN_REGISTRO);
-                    }
-                */
+                    
                 }
                 break;
                 
                 case "producto_nomina_programas" : {
                     Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
-                    ProductoNominaEstatal productoNominaBean = getBean(ProductoNominaEstatal.class);
-                    bytes = productoNominaBean.generarReporte(true, idProductoNomina);
+                    ProductoNominaPrograma productoNominProgramaaBean = getBean(ProductoNominaPrograma.class);
+                    bytes = productoNominProgramaaBean.generarReporte(idProductoNomina);
                 }
                 break;
+                
+                case "pago_general": {
+                    Integer idProducto = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
+                    PagoGeneral pagoGeneral = getBean(PagoGeneral.class);
+                    bytes = pagoGeneral.generarReporte(idProducto);
+                }
             }
         }
         

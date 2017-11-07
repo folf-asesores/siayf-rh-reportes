@@ -3,6 +3,7 @@
  * Creado el 15/feb/2017 5:30:39 AM
  *
  */
+
 package siayf.rh.reportes.persistencia.consulta;
 
 import java.sql.Connection;
@@ -13,11 +14,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-
-import org.jboss.logging.Logger;
 
 import static siayf.rh.reportes.core.AplicacionConstantes.DATASOURCE;
 import static siayf.rh.reportes.util.PlantillaMensaje.SQL_ERROR_MESSAGE;
@@ -129,7 +130,7 @@ public class PagoGeneralQuery {
                 datos.add(objDatos);
             }
         } catch (SQLException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
 
@@ -146,8 +147,9 @@ public class PagoGeneralQuery {
 
             return descripcion;
         } catch (SQLException ex) {
-            LOGGER.errorv(SQL_ERROR_MESSAGE, ex.getMessage(), ex.getSQLState(), ex.getErrorCode());
+            LOGGER.log(Level.SEVERE, SQL_ERROR_MESSAGE, new Object[] {ex.getMessage(), ex.getSQLState(), ex.getErrorCode()});
         }
+
         return null;
     }
 
