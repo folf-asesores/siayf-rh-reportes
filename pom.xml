@@ -170,13 +170,6 @@
             <version>3.17</version>
         </dependency>
 
-        <!-- Permite manipular archivos PDF -->
-        <dependency>
-            <groupId>org.apache.pdfbox</groupId>
-            <artifactId>pdfbox</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-
         <!-- Es un complemento de la biblioteca PDFBox y esta se emplea para la
         generación de la vista previa de los archivos PDF. -->
         <dependency>

@@ -1,5 +1,5 @@
 /*
- * TxtGenerador.java
+ * TextoPlanoGenerador.java
  * Creado el 07/dic/2016 10:53:53 PM
  *
  */
@@ -24,15 +24,15 @@ import siayf.rh.reportes.nomina.prenomina.PrenominaReporte;
  * 
  * @author Freddy Barrera
  */
-public class TxtGenerador implements Generador {
+public class TextoPlanoGenerador implements Generador {
 
-    private static final Logger LOGGER = Logger.getLogger(TxtGenerador.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TextoPlanoGenerador.class.getName());
 
     private static final long serialVersionUID = -763514407303196779L;
 
     @Override
     public Archivo obtenerReporte(Map<String, String> parametros) {
-        AlmacenReportesTxt almacen = new AlmacenReportesTxt();
+        AlmacenReportesTextoPlano almacen = new AlmacenReportesTextoPlano();
         String nombreReporte = parametros.get("REPORTE_NOMBRE");
 
         byte[] bytes = null;

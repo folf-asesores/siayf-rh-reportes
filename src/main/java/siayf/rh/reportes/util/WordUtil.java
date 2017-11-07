@@ -10,8 +10,11 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 
-public class PoiUtils {
+public class WordUtil {
 
+    private WordUtil() {
+    }
+    
     /**
      * Remplaza todos los campos que recibe en el Map en todas las tablas.
      *

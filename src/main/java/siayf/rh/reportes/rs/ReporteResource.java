@@ -4,7 +4,7 @@
  *
  */
 
-package siayf.rh.reportes.core.rs;
+package siayf.rh.reportes.rs;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,8 +29,8 @@ import siayf.rh.reportes.core.excel.AlmacenReportesExcel;
 import siayf.rh.reportes.core.excel.ExcelGenerador;
 import siayf.rh.reportes.core.jasperreports.AlmacenReportesJasperReports;
 import siayf.rh.reportes.core.jasperreports.JasperReportsGenerador;
-import siayf.rh.reportes.core.txt.AlmacenReportesTxt;
-import siayf.rh.reportes.core.txt.TxtGenerador;
+import siayf.rh.reportes.core.txt.AlmacenReportesTextoPlano;
+import siayf.rh.reportes.core.txt.TextoPlanoGenerador;
 import siayf.rh.reportes.core.word.AlmacenReporteWord;
 import siayf.rh.reportes.core.word.WordGenerador;
 
@@ -147,8 +147,8 @@ public class ReporteResource {
                 }
                 break;
             case "txt":
-                if (new AlmacenReportesTxt().extisteReporte(nombreReporte)) {
-                    generador = new TxtGenerador();
+                if (new AlmacenReportesTextoPlano().extisteReporte(nombreReporte)) {
+                    generador = new TextoPlanoGenerador();
                 }
                 break;
             case "xlsx":

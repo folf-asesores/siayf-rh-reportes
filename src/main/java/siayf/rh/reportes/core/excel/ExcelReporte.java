@@ -8,7 +8,6 @@ package siayf.rh.reportes.core.excel;
 
 import siayf.rh.reportes.api.Reporte;
 
-
 /**
  * Esta clase ayuda en la creación de reportes de Excel en los que no se emplea
  * un archivo de Excel como plantilla.

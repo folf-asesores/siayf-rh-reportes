@@ -12,7 +12,7 @@ import java.util.Map;
 import siayf.rh.reportes.api.AlmacenReportes;
 import siayf.rh.reportes.empleado.detalle.DetalleEmpleadoExcel;
 import siayf.rh.reportes.empleado.movimiento.concentrado.ConcentradoAltaBajaExcel;
-import siayf.rh.reportes.nomina.producto.ProductoNominaProgramaExcel;
+import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatalExcel;
 
 /**
  *
@@ -37,7 +37,7 @@ public class AlmacenReportesExcel implements AlmacenReportes<ExcelPlantillaRepor
         // ------------------
         // Reportes de nómina
         // ------------------
-        ProductoNominaProgramaExcel productoNominaPrograma = new ProductoNominaProgramaExcel();
+        ProductoNominaEstatalExcel productoNominaPrograma = new ProductoNominaEstatalExcel();
         REPORTES.put("producto_nomina_programas", productoNominaPrograma);
 
 

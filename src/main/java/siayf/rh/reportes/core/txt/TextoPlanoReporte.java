@@ -1,5 +1,5 @@
 /*
- * TxtReporte.java
+ * TextoPlanoReporte.java
  * Creado el 07/dic/2016 10:40:36 PM
  * 
  */
@@ -12,9 +12,9 @@ import siayf.rh.reportes.api.Reporte;
  *
  * @author Freddy Barrera
  */
-public class TxtReporte extends Reporte {
+public class TextoPlanoReporte extends Reporte {
     
-    public TxtReporte() {
+    public TextoPlanoReporte() {
         super("", "");
     }
     

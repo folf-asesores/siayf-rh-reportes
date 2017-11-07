@@ -18,7 +18,7 @@ import org.hibernate.Session;
 import org.hibernate.transform.Transformers;
 
 import siayf.rh.reportes.core.AplicacionConstantes;
-import siayf.rh.reportes.nomina.producto.ProductoNominaProgramaDto;
+import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatalDto;
 
 /**
  *
@@ -38,12 +38,12 @@ public class ProductoNominaQuery {
             + "  from ProductoNominaEntity as productoNomina"
             + " where productoNomina.idProductoNomina = :idProductoNomina";
 
-    public List<ProductoNominaProgramaDto> obtenerProductoNominaProgramasPorIdProducto(Integer idProductoNomina) {
+    public List<ProductoNominaEstatalDto> obtenerProductoNominaProgramasPorIdProducto(Integer idProductoNomina) {
         Session session = entityManager.unwrap(Session.class);
         Query query = session.createSQLQuery(OBTENER_PRODUCTO_NOMINA_PROGRAMAS_POR_ID_PRODUCTO_DE_NOMINA);
         query.setParameter("idProducto", idProductoNomina);
-        query.setResultTransformer(Transformers.aliasToBean(ProductoNominaProgramaDto.class));
-        List<ProductoNominaProgramaDto> detalles = query.list();
+        query.setResultTransformer(Transformers.aliasToBean(ProductoNominaEstatalDto.class));
+        List<ProductoNominaEstatalDto> detalles = query.list();
 
         return detalles;
     }

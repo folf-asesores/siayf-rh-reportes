@@ -1,5 +1,5 @@
 /*
- * AlmacenReportesTxt.java
+ * AlmacenReportesTextoPlano.java
  * Creado el 07/dic/2016 10:45:36 PM
  *
  */
@@ -15,22 +15,22 @@ import siayf.rh.reportes.api.AlmacenReportes;
  *
  * @author Freddy Barrera
  */
-public class AlmacenReportesTxt implements AlmacenReportes<TxtReporte> {
-    private static final Map<String, TxtReporte> REPORTES = new HashMap<>();
+public class AlmacenReportesTextoPlano implements AlmacenReportes<TextoPlanoReporte> {
+    private static final Map<String, TextoPlanoReporte> REPORTES = new HashMap<>();
 
     static {
-        TxtReporte dispersionNomina = new TxtReporte();
+        TextoPlanoReporte dispersionNomina = new TextoPlanoReporte();
         REPORTES.put("dispersion_nomina", dispersionNomina);
-        TxtReporte comprobanteNomina = new TxtReporte();
+        TextoPlanoReporte comprobanteNomina = new TextoPlanoReporte();
         REPORTES.put("comprobante_nomina", comprobanteNomina);
-        TxtReporte prenominaEventuales = new TxtReporte();
+        TextoPlanoReporte prenominaEventuales = new TextoPlanoReporte();
         REPORTES.put("prenomina_eventuales", prenominaEventuales);
-        TxtReporte listadoFirmas = new TxtReporte();
+        TextoPlanoReporte listadoFirmas = new TextoPlanoReporte();
         REPORTES.put("listado-firmas", listadoFirmas);
     }
 
     @Override
-    public TxtReporte obtenerReporte(String nombreReporte) {
+    public TextoPlanoReporte obtenerReporte(String nombreReporte) {
         return REPORTES.get(nombreReporte);
     }
 

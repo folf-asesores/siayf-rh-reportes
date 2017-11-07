@@ -15,13 +15,13 @@ import siayf.rh.reportes.api.Archivo;
 import siayf.rh.reportes.api.Generador;
 import siayf.rh.reportes.empleado.detalle.DetalleEmpleado;
 import siayf.rh.reportes.empleado.movimiento.cl.ComisionadoLicencia;
-import siayf.rh.reportes.nomina.producto.ProductoNomina;
 import siayf.rh.reportes.util.FechaUtil;
 import siayf.rh.reportes.util.PlantillaMensaje;
 
 import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
 import static siayf.rh.reportes.util.FechaUtil.PATRON_FECHA_BASE_DE_DATOS;
 import static siayf.rh.reportes.util.TipoArchivo.XLSX;
+import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatal;
 
 /**
  *
@@ -87,7 +87,7 @@ public class ExcelGenerador implements Generador {
                 // ------------------
                 case "producto_nomina": {
                     Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
-                    ProductoNomina productoNominaBean = getBean(ProductoNomina.class);
+                    ProductoNominaEstatal productoNominaBean = getBean(ProductoNominaEstatal.class);
                 /*
 
                     Integer idProducto = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
@@ -109,7 +109,7 @@ public class ExcelGenerador implements Generador {
                 
                 case "producto_nomina_programas" : {
                     Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
-                    ProductoNomina productoNominaBean = getBean(ProductoNomina.class);
+                    ProductoNominaEstatal productoNominaBean = getBean(ProductoNominaEstatal.class);
                     bytes = productoNominaBean.generarReporte(true, idProductoNomina);
                 }
                 break;
