@@ -8,6 +8,7 @@ package siayf.rh.reportes.util;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -19,7 +20,7 @@ import javax.naming.NamingException;
 public class BeanInjectUtil {
 
     private static final Logger LOGGER = Logger.getLogger(BeanInjectUtil.class.getName());
-    
+
     private static final String BITACORA_REPORTES_BEAN = "java:module/BitacoraReporteBean";
 
     // JNDI para los reportes de empleados. ===================================
@@ -32,11 +33,11 @@ public class BeanInjectUtil {
     private static final String PAGO_GENERAL_BEAN = "java:module/PagoGeneralBean";
     private static final String PRENOMINA_BEAN = "java:module/PrenominaBean";
     private static final String PRODUCTO_NOMINA_PROGRAMA_BEAN = "java:module/ProductoNominaProgramaBean";
-    
+    private static final String PRODUCTO_NOMINA_ESTATAL_BEAN = "java:module/ProductoNominaEstatalBean";
+
     private BeanInjectUtil() {
     }
 
-    
     public static <T> T getBean(Class<T> clase) {
         String bean = "";
         try {
@@ -71,6 +72,9 @@ public class BeanInjectUtil {
                 case "siayf.rh.reportes.nomina.producto.programa.ProductoNominaPrograma":
                     bean = PRODUCTO_NOMINA_PROGRAMA_BEAN;
                     break;
+                case "siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatal":
+                    bean = PRODUCTO_NOMINA_ESTATAL_BEAN;
+                    break;
                 default:
                     return null;
             }
@@ -78,7 +82,7 @@ public class BeanInjectUtil {
             Context initContext = new InitialContext();
             return (T) initContext.lookup(bean);
         } catch (NamingException ex) {
-            LOGGER.log(Level.SEVERE, PlantillaMensaje.REPORTE_ERROR_BEAN_NO_ENCONTRADO, new Object [] {bean, ex});
+            LOGGER.log(Level.SEVERE, PlantillaMensaje.REPORTE_ERROR_BEAN_NO_ENCONTRADO, new Object[] { bean, ex });
             return null;
         }
     }

@@ -6,6 +6,10 @@
 
 package siayf.rh.reportes.core.excel;
 
+import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
+import static siayf.rh.reportes.util.FechaUtil.PATRON_FECHA_BASE_DE_DATOS;
+import static siayf.rh.reportes.util.TipoArchivo.XLSX;
+
 import java.util.Date;
 import java.util.Map;
 import java.util.logging.Level;
@@ -16,13 +20,10 @@ import siayf.rh.reportes.api.Generador;
 import siayf.rh.reportes.empleado.detalle.DetalleEmpleado;
 import siayf.rh.reportes.empleado.movimiento.cl.ComisionadoLicencia;
 import siayf.rh.reportes.nomina.pg.PagoGeneral;
+import siayf.rh.reportes.nomina.producto.estatal.ProductoNominaEstatal;
 import siayf.rh.reportes.nomina.producto.programa.ProductoNominaPrograma;
 import siayf.rh.reportes.util.FechaUtil;
 import siayf.rh.reportes.util.PlantillaMensaje;
-
-import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
-import static siayf.rh.reportes.util.FechaUtil.PATRON_FECHA_BASE_DE_DATOS;
-import static siayf.rh.reportes.util.TipoArchivo.XLSX;
 
 /**
  *
@@ -49,7 +50,7 @@ public class ExcelGenerador implements Generador {
                     DetalleEmpleado detalleEmpleadoBean = getBean(DetalleEmpleado.class);
                     bytes = detalleEmpleadoBean.generarReporte(idTipoContratacion);
                 }
-                break;
+                    break;
 
                 case "comisionado_licencia": {
                     Date fechaInicial = FechaUtil.comoDate(parametros.get("FECHA_INICIAL"), PATRON_FECHA_BASE_DE_DATOS);
@@ -57,29 +58,30 @@ public class ExcelGenerador implements Generador {
                     ComisionadoLicencia comisionadoLicenciaBean = getBean(ComisionadoLicencia.class);
                     bytes = comisionadoLicenciaBean.generarReporte(fechaInicial, fechaFinal);
                 }
-                break;
-                
+                    break;
+
                 case "concentrado_alta_baja": {
                     Integer idTipoContratacionConcentrado = Integer.parseInt(parametros.get("ID_TIPO_CONTRATACION"));
                     Date fechaInicial = FechaUtil.comoDate(parametros.get("FECHA_INICIAL"), PATRON_FECHA_BASE_DE_DATOS);
                     Date fechaFinal = FechaUtil.comoDate(parametros.get("FECHA_FINAL"), PATRON_FECHA_BASE_DE_DATOS);
                 }
-                break;
-                
+                    break;
+
                 // Reportes de nómina. ========================================
                 case "producto_nomina": {
                     Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
-                    
+                    ProductoNominaEstatal productoNominaEstatalBean = getBean(ProductoNominaEstatal.class);
+                    bytes = productoNominaEstatalBean.generarReporte(idProductoNomina);
                 }
-                break;
-                
-                case "producto_nomina_programas" : {
+                    break;
+
+                case "producto_nomina_programas": {
                     Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
                     ProductoNominaPrograma productoNominProgramaaBean = getBean(ProductoNominaPrograma.class);
                     bytes = productoNominProgramaaBean.generarReporte(idProductoNomina);
                 }
-                break;
-                
+                    break;
+
                 case "pago_general": {
                     Integer idProducto = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
                     PagoGeneral pagoGeneral = getBean(PagoGeneral.class);
@@ -87,8 +89,8 @@ public class ExcelGenerador implements Generador {
                 }
             }
         }
-        
-        if (bytes ==  null) {
+
+        if (bytes == null) {
             LOGGER.log(Level.WARNING, PlantillaMensaje.REPORTE_ERROR_REGRESA_NULL, nombreReporte);
             bytes = ReporteVacio.obtenerBytes();
         }
