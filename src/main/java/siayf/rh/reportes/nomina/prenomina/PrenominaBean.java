@@ -6,9 +6,10 @@
 
 package siayf.rh.reportes.nomina.prenomina;
 
-import siayf.rh.reportes.persistencia.consulta.PrenominaQuery;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+
+import siayf.rh.reportes.persistencia.consulta.PrenominaQuery;
 import siayf.rh.reportes.util.ValidacionUtil;
 
 /**
@@ -18,11 +19,15 @@ import siayf.rh.reportes.util.ValidacionUtil;
 @Stateless
 public class PrenominaBean implements Prenomina {
 
+    private static final long serialVersionUID = 3836277387976905154L;
+
     @Inject
     private PrenominaQuery prenominaReporteService;
 
     @Override
-    public byte[] generarReporte(Integer idProductoNomina) {
+    public byte[] generarReporte(Object [] parametros) {
+        Integer idProductoNomina = (Integer) parametros[0];
+
         if (ValidacionUtil.esNumeroNegativo(idProductoNomina)) {
             throw new IllegalArgumentException("El ID del producto no debe ser nulo o menor que uno.");
         }

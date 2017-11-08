@@ -6,19 +6,25 @@
 
 package siayf.rh.reportes.core.txt;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import siayf.rh.reportes.api.Archivo;
+import org.apache.commons.io.IOUtils;
 
+import siayf.rh.reportes.api.Archivo;
 import siayf.rh.reportes.api.Generador;
-import siayf.rh.reportes.util.TipoArchivo;
-/*
 import siayf.rh.reportes.nomina.comprobante.ComprobanteEmpleado;
 import siayf.rh.reportes.nomina.dispersion.Dispersion;
 import siayf.rh.reportes.nomina.firma.Firma;
-import siayf.rh.reportes.nomina.prenomina.PrenominaReporte;
- */
+import siayf.rh.reportes.nomina.prenomina.Prenomina;
+import siayf.rh.reportes.util.TipoArchivo;
+
+import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
 
 /**
  * Esta clase se encarga de generar los reporte de texto plano.
@@ -38,7 +44,6 @@ public class TextoPlanoGenerador implements Generador {
 
         byte[] bytes = null;
 
-        /*
         if (almacen.extisteReporte(nombreReporte)) {
             switch (nombreReporte) {
                 case "comprobante_nomina": {
@@ -53,7 +58,7 @@ public class TextoPlanoGenerador implements Generador {
                     bytes = dispersionBean.generarReporte(idProductoNomina);
                 }
                 break;
-                case "listado-firmas": {
+                case "listado_firmas": {
                     Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
                     Firma firmaBean = getBean(Firma.class);
                     bytes = firmaBean.generarReporte(idProductoNomina);
@@ -61,14 +66,21 @@ public class TextoPlanoGenerador implements Generador {
                 break;
                 case "prenomina_eventuales": {
                     Integer idProductoNomina = Integer.parseInt(parametros.get("ID_PRODUCTO_NOMINA"));
-                    PrenominaReporte prenominaReporteBean = getBean(PrenominaReporte.class);
+                    Prenomina prenominaReporteBean = getBean(Prenomina.class);
                     bytes = prenominaReporteBean.generarReporte(idProductoNomina);
                 }
             }
         }
-        */
         
-        // TODO: Agregar la genaración de reporte vacio en caso de que sea null.
+        if (bytes == null) {
+            try {
+                Path path = Files.createTempFile(nombreReporte, ".txt");
+                FileInputStream fileStream = new FileInputStream(path.toFile());
+                bytes = IOUtils.toByteArray(fileStream);
+            } catch (IOException ex) {
+                LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
+            }
+        }
 
         String nombre = nombreReporte + TipoArchivo.TXT.getExtension(true);
         String mediaType = TipoArchivo.TXT.getMIMEType();

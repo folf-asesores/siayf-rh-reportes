@@ -24,7 +24,9 @@ public class FirmaBean implements Firma {
     private FirmaService firmaService; 
 
     @Override
-    public byte[] generarReporte(final Integer idProductoNomina) {
+    public byte[] generarReporte(Object ... parametros) {
+        Integer idProductoNomina = (Integer) parametros[0];
+
         if (ValidacionUtil.esNumeroNegativo(idProductoNomina)) {
             throw new IllegalArgumentException("El ID del producto no debe ser nulo o menor que uno.");
         }

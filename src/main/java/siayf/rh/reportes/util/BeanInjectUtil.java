@@ -26,8 +26,12 @@ public class BeanInjectUtil {
     private static final String DETALLE_EMPLEADO_BEAN = "java:module/DetalleEmpleadoBean";
     private static final String COMISIONADO_LICENCIA_BEAN = "java:module/ComisionadoLicenciaBean";
     // JNDI para los reportes de nómina. ======================================
-    private static final String PRODUCTO_NOMINA_PROGRAMA_BEAN = "java:module/ProductoNominaProgramaBean";
+    private static final String COMPROBANTE_EMPLEADO_BEAN = "java:module/ComprobanteEmpleadoBean";
+    private static final String DISPERSION_BEAN = "java:module/DispersionBean";
+    private static final String FIRMA_BEAN = "java:module/FirmaBean";
     private static final String PAGO_GENERAL_BEAN = "java:module/PagoGeneralBean";
+    private static final String PRENOMINA_BEAN = "java:module/PrenominaBean";
+    private static final String PRODUCTO_NOMINA_PROGRAMA_BEAN = "java:module/ProductoNominaProgramaBean";
     
     private BeanInjectUtil() {
     }
@@ -49,11 +53,23 @@ public class BeanInjectUtil {
                     bean = COMISIONADO_LICENCIA_BEAN;
                     break;
                 // Beans para los reportes de nómina. =========================
-                case "siayf.rh.reportes.nomina.producto.programa.ProductoNominaPrograma":
-                    bean = PRODUCTO_NOMINA_PROGRAMA_BEAN;
+                case "siayf.rh.reportes.nomina.comprobante.ComprobanteEmpleado":
+                    bean = COMPROBANTE_EMPLEADO_BEAN;
+                    break;
+                case "siayf.rh.reportes.nomina.dispersion.Dispersion":
+                    bean = DISPERSION_BEAN;
+                    break;
+                case "siayf.rh.reportes.nomina.firma.Firma":
+                    bean = FIRMA_BEAN;
                     break;
                 case "siayf.rh.reportes.nomina.pg.PagoGeneral":
                     bean = PAGO_GENERAL_BEAN;
+                    break;
+                case "siayf.rh.reportes.nomina.prenomina.Prenomina":
+                    bean = PRENOMINA_BEAN;
+                    break;
+                case "siayf.rh.reportes.nomina.producto.programa.ProductoNominaPrograma":
+                    bean = PRODUCTO_NOMINA_PROGRAMA_BEAN;
                     break;
                 default:
                     return null;

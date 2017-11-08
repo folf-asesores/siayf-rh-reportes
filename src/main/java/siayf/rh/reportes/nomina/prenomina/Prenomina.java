@@ -8,12 +8,13 @@ package siayf.rh.reportes.nomina.prenomina;
 
 import javax.ejb.Local;
 
+import siayf.rh.reportes.api.Reporteador;
+
 /**
  *
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 @Local
-public interface Prenomina {
+public interface Prenomina extends Reporteador {
 
-    byte[] generarReporte(Integer idProductoNomina);
 }

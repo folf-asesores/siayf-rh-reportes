@@ -22,8 +22,17 @@ public class ComprobanteEmpleadoBean implements ComprobanteEmpleado {
 
     @Inject private ComprobanteEmpleadoService comprobanteEmpleadoService;
     
+    /**
+     * Permite obtener el reporte de comprobantes de pago (cheques) en formato
+     * de texto plano como un arreglo de bytes.
+     *
+     * @param parametros ID del producto de nómina que se desea.
+     * @return el reporte como un arreglo de bytes.
+     */
     @Override
-    public byte[] generarReporte(Integer idProductoNomina) {
+    public byte[] generarReporte(Object [] parametros) {
+        Integer idProductoNomina = (Integer) parametros[0];
+
         if(ValidacionUtil.esNumeroNegativo(idProductoNomina)) {
             throw new IllegalArgumentException("El ID del producto no debe ser nulo o menor que uno");
         }

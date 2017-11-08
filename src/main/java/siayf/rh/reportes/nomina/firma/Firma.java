@@ -6,16 +6,15 @@
 
 package siayf.rh.reportes.nomina.firma;
 
-import java.io.Serializable;
 import javax.ejb.Local;
+
+import siayf.rh.reportes.api.Reporteador;
 
 /**
  *
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 @Local
-public interface Firma extends Serializable {
-
-    byte [] generarReporte(final Integer idProductoNomina);
+public interface Firma extends Reporteador {
 
 }

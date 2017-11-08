@@ -6,9 +6,8 @@
 
 package siayf.rh.reportes.nomina.comprobante;
 
-import java.io.Serializable;
-
 import javax.ejb.Local;
+import siayf.rh.reportes.api.Reporteador;
 
 /**
  * Esta interfaz define lo necesario para la generación del reporte de
@@ -17,15 +16,6 @@ import javax.ejb.Local;
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 @Local
-public interface ComprobanteEmpleado extends Serializable {
-
-    /**
-     * Permite obtener el reporte de comprobantes de pago (cheques) en formato
-     * de texto plano como un arreglo de bytes.
-     *
-     * @param idProductoNomina el ID del producto de nómina que se desea.
-     * @return el reporte como un arreglo de bytes.
-     */
-    byte[] generarReporte(Integer idProductoNomina);
+public interface ComprobanteEmpleado extends Reporteador {
 
 }
