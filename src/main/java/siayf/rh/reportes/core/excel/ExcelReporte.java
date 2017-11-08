@@ -6,6 +6,7 @@
 
 package siayf.rh.reportes.core.excel;
 
+import java.io.Serializable;
 import siayf.rh.reportes.api.Reporte;
 
 /**
@@ -14,7 +15,9 @@ import siayf.rh.reportes.api.Reporte;
  * 
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
-public class ExcelReporte extends Reporte {
+public class ExcelReporte extends Reporte implements Serializable {
+
+    private static final long serialVersionUID = -6936730041527771980L;
 
     public ExcelReporte() {
         super(null, null);

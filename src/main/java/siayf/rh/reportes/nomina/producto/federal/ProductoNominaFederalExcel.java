@@ -8,7 +8,6 @@ package siayf.rh.reportes.nomina.producto.federal;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +24,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.DateFormatConverter;
 import org.apache.poi.ss.util.WorkbookUtil;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import siayf.rh.reportes.core.excel.ExcelReporte;
 
 import siayf.rh.reportes.util.FechaUtil;
 
@@ -32,7 +32,7 @@ import siayf.rh.reportes.util.FechaUtil;
  *
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
-public class ProductoNominaFederalExcel implements Serializable {
+public class ProductoNominaFederalExcel extends ExcelReporte {
 
     private static final long serialVersionUID = -5362019182861266115L;
     private static final Logger LOGGER = Logger.getLogger(ProductoNominaFederalExcel.class.getName());

@@ -1,5 +1,5 @@
 /*
- * ReporteResource.java
+ * ReportePruebaResource.java
  * Creado el 9/sep/2016 1:37:04 PM
  *
  */
@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -55,10 +55,10 @@ import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
-@Path("/")
-public class ReporteResource {
+@Path("prueba")
+public class ReportePruebaResource {
 
-    private static final Logger LOGGER = Logger.getLogger(ReporteResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ReportePruebaResource.class.getName());
     
     @Context
     private UriInfo uriInfo;
@@ -71,7 +71,7 @@ public class ReporteResource {
     /**
      * Crea una nueva instancia del administrador de reportes.
      */
-    public ReporteResource() {
+    public ReportePruebaResource() {
         bitacoraReporte = getBean(BitacoraReporte.class);
     }
 
@@ -97,7 +97,7 @@ public class ReporteResource {
      * @throws IllegalArgumentException Si los parametros no son pares.
      * @throws NullPointerException Si los paramtros están nulos o vacios.
      */
-    @POST
+    @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String obtenerReferencia() throws NullPointerException, IllegalArgumentException {
         Map<String, String> mapaParametros = separarClaveValor(uriInfo.getQueryParameters());
@@ -116,7 +116,7 @@ public class ReporteResource {
      * @throws NullPointerException si la es nula o vacia.
      * @throws IllegalArgumentException si la cadena no tiene los 36 cáracteres.
      */
-    @POST
+    @GET
     @Path("{referencia}")
     @Produces(MediaType.WILDCARD)
     public Response obtenerReporte(@PathParam("referencia") String referencia) throws NullPointerException, IllegalArgumentException {
