@@ -3,6 +3,7 @@
  * Creado el 13/feb/2017 4:41:32 PM
  * 
  */
+
 package siayf.rh.reportes.nomina.pg;
 
 import java.io.ByteArrayOutputStream;
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -26,7 +28,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.DateFormatConverter;
 import org.apache.poi.ss.util.WorkbookUtil;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.jboss.logging.Logger;
 
 import siayf.rh.reportes.core.excel.ExcelReporte;
 import siayf.rh.reportes.util.FechaUtil;

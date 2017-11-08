@@ -3,6 +3,7 @@
  * Creado el 18/nov/2016 3:12:03 PM
  * 
  */
+
 package siayf.rh.reportes.nomina.comprobante;
 
 import java.io.Serializable;

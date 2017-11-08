@@ -73,12 +73,6 @@ public class UsuarioEntity implements Serializable {
     @Column(name = "id_adscripcion")
     private Integer id_adscripcion;
 
-    public String nombreCompleto() {
-        String nombreCompleto = nombre + " " + apellidoPaterno + " "
-                + apellidoMaterno;
-        return nombreCompleto;
-    }
-
     public Integer getIdUsuario() {
         return idUsuario;
     }

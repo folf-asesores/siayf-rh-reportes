@@ -26,9 +26,6 @@ public class PerfilUsuarioEntity implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    /**
-     * ******* Getters and Setters ********
-     */
     public Integer getIdPerfil() {
         return idPerfil;
     }

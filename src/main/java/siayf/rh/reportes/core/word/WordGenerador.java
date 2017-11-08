@@ -12,8 +12,8 @@ import siayf.rh.reportes.api.Generador;
 import siayf.rh.reportes.util.TipoArchivo;
 
 /**
- * @author Eduardo Chuc Mex
  *
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public class WordGenerador implements Generador {
 

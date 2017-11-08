@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  * 
  * @see MessageFormat
  * @see Logger#log(java.util.logging.Level, java.lang.String, java.lang.Object[])
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class PlantillaMensaje {
     

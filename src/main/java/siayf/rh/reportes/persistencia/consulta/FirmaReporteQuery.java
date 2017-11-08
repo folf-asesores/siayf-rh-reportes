@@ -15,11 +15,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-
-import org.jboss.logging.Logger;
 
 import siayf.rh.reportes.core.AplicacionConstantes;
 import siayf.rh.reportes.nomina.firma.FirmaPojo;
@@ -134,7 +133,7 @@ public class FirmaReporteQuery implements Serializable {
             
             return firmas;
         } catch (SQLException ex) {
-            LOGGER.error(ex);
+            LOGGER.severe(ex.getMessage());
             return null;
         }
     }

@@ -13,7 +13,7 @@ import siayf.rh.reportes.api.AlmacenReportes;
 
 /**
  *
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class AlmacenReportesTextoPlano implements AlmacenReportes<TextoPlanoReporte> {
     private static final Map<String, TextoPlanoReporte> REPORTES = new HashMap<>();

@@ -10,14 +10,14 @@ import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import siayf.rh.reportes.util.NumeroALetraUtil;
-
 import net.sf.jasperreports.engine.JRDefaultScriptlet;
 import net.sf.jasperreports.engine.JRScriptletException;
 
+import siayf.rh.reportes.util.NumeroALetraUtil;
+
 /**
  *
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class NumeroALetraScriptlet extends JRDefaultScriptlet {
 

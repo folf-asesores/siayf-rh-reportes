@@ -17,7 +17,7 @@ import siayf.rh.reportes.util.NumeroUtil;
 
 /**
  *
- * @author Eduardo Chuc Mex
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public class DetalleEmpleadoExcel extends ExcelPlantillaReporte<DetalleEmpleadoDto> implements Serializable {
 

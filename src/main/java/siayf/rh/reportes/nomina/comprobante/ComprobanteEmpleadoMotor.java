@@ -14,8 +14,7 @@ import java.nio.file.Path;
 import java.util.Formatter;
 import java.util.Iterator;
 import java.util.List;
-
-import org.jboss.logging.Logger;
+import java.util.logging.Logger;
 
 import siayf.rh.reportes.util.ArchivoUtil;
 import siayf.rh.reportes.util.FechaUtil;
@@ -64,7 +63,7 @@ public class ComprobanteEmpleadoMotor implements Serializable {
             System.setProperty("line.separator", ArchivoUtil.SEPARADOR_DE_ARCHIVO);
             return reporte;
         } catch (IOException ex) {
-            LOGGER.error(ex);
+            LOGGER.severe(ex.getMessage());
         }
         
         return null;
@@ -140,16 +139,17 @@ public class ComprobanteEmpleadoMotor implements Serializable {
     
     private int llenarConceptos(Formatter formatter, List<ConceptoComprobanteDto> conceptosA, List<ConceptoComprobanteDto> conceptosB) {
         if (conceptosA != null) {
-            LOGGER.info("Conceptos A");
+            LOGGER.fine("Conceptos A");
             for(ConceptoComprobanteDto ccdto : conceptosA) {
-                LOGGER.info(ccdto);
+                LOGGER.fine(ccdto.toString());
             }
         }
 
         if (conceptosB != null) {
             LOGGER.info("Conceptos B");
+
             for(ConceptoComprobanteDto ccdto : conceptosB) {
-                LOGGER.info(ccdto);
+                LOGGER.fine(ccdto.toString());
             }
         }
         
@@ -226,7 +226,7 @@ public class ComprobanteEmpleadoMotor implements Serializable {
             try {
                 appendable.append(' ');
             } catch (IOException ex) {
-                LOGGER.warn(ex);
+                LOGGER.warning(ex.getMessage());
             }
         }
     }
@@ -238,7 +238,7 @@ public class ComprobanteEmpleadoMotor implements Serializable {
             try {
                 appendable.append(System.getProperty("line.separator"));
             } catch (IOException ex) {
-                LOGGER.warn(ex);
+                LOGGER.warning(ex.getMessage());
             }
         }
     }

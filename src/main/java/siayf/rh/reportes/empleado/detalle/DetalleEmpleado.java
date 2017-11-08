@@ -9,7 +9,7 @@ import siayf.rh.reportes.api.Reporteador;
 
 /**
  *
- * @author Eduardo Chuc Mex
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 @Local
 public interface DetalleEmpleado extends Reporteador {

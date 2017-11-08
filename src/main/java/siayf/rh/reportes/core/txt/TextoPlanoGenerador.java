@@ -3,6 +3,7 @@
  * Creado el 07/dic/2016 10:53:53 PM
  *
  */
+
 package siayf.rh.reportes.core.txt;
 
 import java.util.Map;
@@ -22,7 +23,7 @@ import siayf.rh.reportes.nomina.prenomina.PrenominaReporte;
 /**
  * Esta clase se encarga de generar los reporte de texto plano.
  * 
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class TextoPlanoGenerador implements Generador {
 

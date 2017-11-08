@@ -12,7 +12,7 @@ import siayf.rh.reportes.persistencia.entidad.UsuarioEntity;
 
 /**
  * 
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class UsuarioRepository extends GenericRepository<UsuarioEntity, Integer> implements Serializable {
 

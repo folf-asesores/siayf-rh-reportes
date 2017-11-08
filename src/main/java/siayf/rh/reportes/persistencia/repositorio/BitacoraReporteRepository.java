@@ -1,6 +1,7 @@
 /*
  * 
  */
+
 package siayf.rh.reportes.persistencia.repositorio;
 
 import java.util.UUID;
@@ -8,7 +9,7 @@ import siayf.rh.reportes.persistencia.entidad.BitacoraReporteEntity;
 
 /**
  *
- * @author Eduardo Chuc Mex
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public class BitacoraReporteRepository extends GenericRepository<BitacoraReporteEntity, UUID> {
 

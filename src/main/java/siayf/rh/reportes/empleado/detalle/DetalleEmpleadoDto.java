@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author Eduardo Chuc Mex
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public final class DetalleEmpleadoDto implements Serializable {
 

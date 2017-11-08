@@ -15,11 +15,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-
-import org.jboss.logging.Logger;
 
 import static siayf.rh.reportes.core.AplicacionConstantes.DATASOURCE;
 
@@ -121,7 +121,7 @@ public class ProductoNominaFederalQuery implements Serializable {
                 datos.add(objDatos);
             }
         } catch (SQLException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
 }

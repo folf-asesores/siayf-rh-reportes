@@ -1,8 +1,9 @@
 /*
  * Dispersion.java
- * Creado el 07/Dec/2016 6:34:41 PM
+ * Creado el 07/dic/2016 6:34:41 PM
  * 
  */
+
 package siayf.rh.reportes.nomina.dispersion;
 
 import java.io.Serializable;

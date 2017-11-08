@@ -8,7 +8,7 @@ package siayf.rh.reportes.core;
 
 /**
  *
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class AplicacionConstantes {
 

@@ -14,7 +14,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Eduardo Chuc Mex
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public class ProductoNominaProgramaDto implements Serializable {
 

@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public interface Reporteador extends Serializable {
 

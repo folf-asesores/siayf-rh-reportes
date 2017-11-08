@@ -24,7 +24,7 @@ import siayf.rh.reportes.empleado.detalle.DetalleEmpleadoDto;
 import siayf.rh.reportes.util.PlantillaMensaje;
 
 /**
- * @author Eduardo Chuc Mex
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  *
  */
 public class DetalleEmpleadoQuery implements Serializable {

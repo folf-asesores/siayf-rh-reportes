@@ -69,7 +69,11 @@ public final class DeduccionDto {
 
     @Override
     public String toString() {
-        return "DeduccionDTO{" + "clave=" + clave + ", nombre=" + nombre + ", monto=" + monto + '}';
+        return "DeduccionDTO{" 
+                + "clave : " + clave
+                + ", nombre : " + nombre
+                + ", monto : " + monto
+                + '}';
     }
 
 }

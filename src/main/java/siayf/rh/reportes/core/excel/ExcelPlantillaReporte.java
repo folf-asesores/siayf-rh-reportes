@@ -24,7 +24,7 @@ import siayf.rh.reportes.api.Reporte;
  * 
  * @param <T> el tipo que tendrán los detalles.
  * 
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public abstract class ExcelPlantillaReporte<T> extends Reporte {
 

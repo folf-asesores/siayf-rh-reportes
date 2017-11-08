@@ -36,8 +36,8 @@ import static siayf.rh.reportes.core.AplicacionConstantes.DATASOURCE;
 /**
  * Esta clase ayuda en la compilación de los archivos de JasperReport.
  *
- * @author Freddy Barrera
- * @author Eduardo Chuc Mex
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public class JasperReportsCompilador {
 

@@ -15,8 +15,8 @@ import java.util.logging.Logger;
  * 
  * <p>Su función principal es ayudar a cargar la plantilla del reporte.</p>
  * 
- * @author Freddy Barrera
- * @author Eduardo Chuc Mex
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public class Reporte {
 

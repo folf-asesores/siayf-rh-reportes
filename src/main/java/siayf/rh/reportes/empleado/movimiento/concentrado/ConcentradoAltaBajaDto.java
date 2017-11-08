@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  *
- * @author Eduardo Chuc
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public class ConcentradoAltaBajaDto implements Serializable {
 

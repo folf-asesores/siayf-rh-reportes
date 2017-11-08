@@ -11,7 +11,7 @@ import siayf.rh.reportes.api.AlmacenReportes;
 
 /**
  *
- * @author Eduardo Chuc Mex
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public class AlmacenReporteWord implements AlmacenReportes<WordReporte> {
 

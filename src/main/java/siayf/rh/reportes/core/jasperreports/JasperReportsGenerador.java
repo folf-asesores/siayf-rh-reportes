@@ -20,7 +20,7 @@ import siayf.rh.reportes.util.FechaUtil;
 import siayf.rh.reportes.util.TipoArchivo;
 
 /**
- * @author Eduardo Mex
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  *
  */
 public class JasperReportsGenerador implements Generador {

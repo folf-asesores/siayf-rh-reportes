@@ -29,8 +29,8 @@ import siayf.rh.reportes.persistencia.repositorio.UsuarioRepository;
  * Este EJB ayuda a registrar en la bitácora la información de generación de los
  * reportes.
  * 
- * @author Freddy Barrera
- * @author Eduardo Chuc Mex
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 @Stateless
 public class BitacoraReporteBean implements BitacoraReporte {

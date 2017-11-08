@@ -26,8 +26,8 @@ import static siayf.rh.reportes.util.TipoArchivo.XLSX;
 
 /**
  *
- * @author Freddy Barrera
- * @author Eduardo Chuc Mex
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public class ExcelGenerador implements Generador {
 

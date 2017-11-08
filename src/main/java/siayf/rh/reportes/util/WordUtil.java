@@ -10,6 +10,10 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 
+/**
+ * 
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
+ */
 public class WordUtil {
 
     private WordUtil() {

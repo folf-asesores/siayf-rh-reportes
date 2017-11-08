@@ -12,8 +12,8 @@ import java.util.Map;
 /**
  * Esta interfaz describe el mecanismo para generar el reporte.
  * 
- * @author Freddy Barrera
- * @author Eduardo Mex
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public interface Generador extends Serializable {
 

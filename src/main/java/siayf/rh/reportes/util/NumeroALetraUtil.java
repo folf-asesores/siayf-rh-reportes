@@ -21,8 +21,8 @@ import org.apache.commons.lang3.StringUtils;
  * (<a href="https://github.com/Axiacore/numero-a-letras/blob/master/java/NumberToLetterConverter.java">código en GitHub</a>)</p>
  *
  * @author Rene Gómez
- * @author Freddy Barrera
- * @author Eduardo Chuc Mex
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public class NumeroALetraUtil implements Serializable {
 

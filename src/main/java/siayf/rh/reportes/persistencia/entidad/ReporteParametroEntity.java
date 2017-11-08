@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Eduardo Chuc Mex
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 @Entity
 @Table(name = "reportes_parametros")

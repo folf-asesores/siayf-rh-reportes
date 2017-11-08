@@ -18,7 +18,7 @@ import siayf.rh.reportes.nomina.producto.programa.ProductoNominaProgramaExcel;
 
 /**
  *
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class AlmacenReportesExcel implements AlmacenReportes<Reporte> {
 

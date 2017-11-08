@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author Eduardo Chuc Mex
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 @Stateless
 public class DetalleEmpleadoBean implements DetalleEmpleado {

@@ -21,8 +21,8 @@ import org.joda.time.LocalTime;
  * Esta clase es una utilería que permite trabajar con la fecha y la hora, tanto
  * formateo como conversión.
  *
- * @author Leila Schiaffini Ehuan
- * @author Freddy Barrera
+ * @author Leila Schiaffini Ehuan (leila.schiaffini@gmail.com)
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class FechaUtil {
 

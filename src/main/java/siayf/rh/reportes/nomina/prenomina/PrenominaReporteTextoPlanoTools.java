@@ -1,6 +1,6 @@
 /*
  * PrenominaReporteTextoPlanoTools.java
- * Creado el 03/Jul/2017 2:02:27 PM
+ * Creado el 03/jul/2017 2:02:27 PM
  *
  */
 
@@ -15,7 +15,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import siayf.rh.reportes.util.FechaUtil;
 import siayf.rh.reportes.util.NumeroALetraUtil;
-
 
 /**
  *

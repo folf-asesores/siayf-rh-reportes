@@ -1,8 +1,9 @@
 /*
  * ArchivoUtil.java
- * Creado el 30/06/2016 11:35:45 AM
+ * Creado el 30/jun/2016 11:35:45 AM
  *
  */
+
 package siayf.rh.reportes.util;
 
 import java.io.IOException;

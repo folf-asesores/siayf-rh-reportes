@@ -10,7 +10,7 @@ import siayf.rh.reportes.api.Reporte;
 
 /**
  *
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class TextoPlanoReporte extends Reporte {
     

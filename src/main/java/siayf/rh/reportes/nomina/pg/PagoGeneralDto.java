@@ -3,6 +3,7 @@
  * Creado el 13/feb/2017 5:02:48 PM
  * 
  */
+
 package siayf.rh.reportes.nomina.pg;
 
 import java.io.Serializable;
@@ -11,8 +12,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-import org.jboss.logging.Logger;
-
 /**
  *
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
@@ -20,7 +19,6 @@ import org.jboss.logging.Logger;
 public class PagoGeneralDto implements Serializable {
 
     private static final long serialVersionUID = -7771614443915548225L;
-    private static final Logger LOGGER = Logger.getLogger(PagoGeneralDto.class.getName());
     
     private String programa;
     private Integer numeroConsecutivoRegistro;

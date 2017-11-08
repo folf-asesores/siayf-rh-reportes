@@ -1,10 +1,10 @@
 /*
  * DispersionDto.java
- * Creado el 07/Dec/2016 6:51:15 PM
+ * Creado el 07/dic/2016 6:51:15 PM
  *
  */
-package siayf.rh.reportes.nomina.dispersion;
 
+package siayf.rh.reportes.nomina.dispersion;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

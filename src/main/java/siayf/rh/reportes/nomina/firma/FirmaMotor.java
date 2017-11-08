@@ -14,8 +14,7 @@ import java.nio.file.Path;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
-
-import org.jboss.logging.Logger;
+import java.util.logging.Logger;
 
 import siayf.rh.reportes.util.ArchivoUtil;
 
@@ -73,14 +72,14 @@ public class FirmaMotor {
             System.setProperty("line.separator", SEPARADOR_DE_ARCHIVO);
             return reporte;
         } catch (IOException ex) {
-            LOGGER.error(ex);
+            LOGGER.severe(ex.getMessage());
         }
         return null;
     }
 
     private StringBuilder llenarReporte(FirmaDto firma) {
         if(firma == null) {
-            LOGGER.warn("Firma es null");
+            LOGGER.warning("Firma es null");
         }
         
         StringBuilder sb = new StringBuilder();
@@ -267,7 +266,7 @@ public class FirmaMotor {
         try {
             contadorLineas = contadorLineas + agregarLineasFirma(formatter);
         } catch (IOException ex) {
-            LOGGER.warn(ex);
+            LOGGER.warning(ex.getMessage());
         }
 
         formatter.format(centrarTexto(nombreElaboro, 35));
@@ -296,7 +295,7 @@ public class FirmaMotor {
             try {
                 appendable.append(' ');
             } catch (IOException ex) {
-                LOGGER.warn(ex);
+                LOGGER.warning(ex.getMessage());
             }
         }
     }
@@ -308,7 +307,7 @@ public class FirmaMotor {
             try {
                 appendable.append(System.getProperty("line.separator"));
             } catch (IOException ex) {
-                LOGGER.warn(ex);
+                LOGGER.warning(ex.getMessage());
             }
         }
     }
@@ -326,7 +325,7 @@ public class FirmaMotor {
             appendable.append('\n');
 
         } catch (IOException ex) {
-            LOGGER.warn(ex);
+            LOGGER.warning(ex.getMessage());
         }
     }
 

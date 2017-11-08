@@ -1,8 +1,9 @@
 /*
  * ConcentradoAltaBajaExcel.java
- * Creado el 27/Oct/2017 10:09:29 PM
+ * Creado el 27/oct/2017 10:09:29 PM
  * 
  */
+
 package siayf.rh.reportes.empleado.movimiento.concentrado;
 
 import java.util.List;

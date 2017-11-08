@@ -3,16 +3,19 @@
  * Creado el 15/feb/2017 5:20:53 AM
  * 
  */
+
 package siayf.rh.reportes.nomina.pg;
 
-import siayf.rh.reportes.persistencia.consulta.PagoGeneralQuery;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import org.jboss.logging.Logger;
+import siayf.rh.reportes.persistencia.consulta.PagoGeneralQuery;
 import siayf.rh.reportes.util.ValidacionUtil;
 
 /**
@@ -45,7 +48,7 @@ public class PagoGeneralBean implements PagoGeneral {
             pagoGeneralService.obtenerInformacion(idProductoNomina, titulos, datos);
             return pagoGeneralExcelService.obtenerBytes(titulos, datos);
         } catch (IOException ex) {
-            LOGGER.error(ex.getMessage(), ex);
+            LOGGER.log(Level.SEVERE, ex.getMessage(), ex);
             return null;
         }
     }

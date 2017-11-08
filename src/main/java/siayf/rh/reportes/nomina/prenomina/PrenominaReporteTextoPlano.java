@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
-import org.jboss.logging.Logger;
 import siayf.rh.reportes.util.ArchivoUtil;
 
 /**
@@ -225,7 +225,7 @@ public class PrenominaReporteTextoPlano {
             bytes = Files.readAllBytes(pathReporteTemporal);
             Files.delete(pathReporteTemporal);
         } catch (IOException ex) {
-            LOGGER.error(ex);
+            LOGGER.severe(ex.getMessage());
         }
 
         System.setProperty("line.separator", ArchivoUtil.SEPARADOR_DE_ARCHIVO);

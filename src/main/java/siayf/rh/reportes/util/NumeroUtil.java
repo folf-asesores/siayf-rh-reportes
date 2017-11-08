@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 
 /**
  *
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public class NumeroUtil {
 

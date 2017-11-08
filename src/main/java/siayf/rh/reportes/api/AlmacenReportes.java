@@ -16,8 +16,8 @@ package siayf.rh.reportes.api;
  * 
  * @param <T> el tipo del reportes que llevará el almacen.
  *
- * @author Freddy Barrera
- * @author Eduardo Chuc Mex
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
+ * @author Eduardo Chuc Mex (Lic.Eduardo_Mex@hotmail.com)
  */
 public interface AlmacenReportes<T extends Reporte> {
 

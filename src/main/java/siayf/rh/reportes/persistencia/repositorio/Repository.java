@@ -15,7 +15,7 @@ import java.util.List;
  * @param <T> el tipo de la entidad.
  * @param <K> el tipo de la llave primaria.
  * 
- * @author Freddy Barrera
+ * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
 public interface Repository <T, K extends Serializable> extends Serializable {
 
