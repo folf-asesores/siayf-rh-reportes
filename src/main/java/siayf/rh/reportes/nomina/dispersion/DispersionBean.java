@@ -38,7 +38,7 @@ public class DispersionBean implements Dispersion {
             Integer idProductoNomina = (Integer) parametros[0];
 
             return generarReporte(idProductoNomina);
-        } else if (parametros != null && parametros.length == 1) {
+        } else if (parametros != null && parametros.length == 2) {
             Integer idProductoNomina = (Integer) parametros[0];
             Boolean excel = (Boolean) parametros[1];
 
