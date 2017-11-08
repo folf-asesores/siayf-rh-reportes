@@ -325,6 +325,14 @@
             </roles>
         </developer>
         <developer>
+            <id>luineo</id>
+            <name>Luis Miguel Sanchez Tizapantzi</name>
+            <email>luis.miguel.s.t@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
             <id>danny</id>
             <name>Daniela Hernández</name>
             <email>dannyambroshernandez@gmail.com</email>
