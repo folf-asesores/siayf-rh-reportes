@@ -66,7 +66,7 @@ import siayf.rh.reportes.persistencia.repositorio.BitacoraReporteRepository;
 import siayf.rh.reportes.persistencia.repositorio.GenericRepository;
 import siayf.rh.reportes.persistencia.repositorio.Repository;
 import siayf.rh.reportes.persistencia.repositorio.UsuarioRepository;
-import siayf.rh.reportes.util.BeanInjectUtil;
+import siayf.rh.reportes.util.BeanFactory;
 import siayf.rh.reportes.util.FechaUtil;
 import siayf.rh.reportes.util.PlantillaMensaje;
 import siayf.rh.reportes.util.TipoArchivo;
@@ -151,7 +151,7 @@ public class ReporteResourceTest {
         war.addClass(UsuarioRepository.class);
 
         // Clases del paquete util
-        war.addClass(BeanInjectUtil.class);
+        war.addClass(BeanFactory.class);
         war.addClass(FechaUtil.class);
         war.addClass(PlantillaMensaje.class);
         war.addClass(TipoArchivo.class);

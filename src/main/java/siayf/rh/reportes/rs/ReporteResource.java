@@ -34,7 +34,7 @@ import siayf.rh.reportes.core.txt.TextoPlanoGenerador;
 import siayf.rh.reportes.core.word.AlmacenReporteWord;
 import siayf.rh.reportes.core.word.WordGenerador;
 
-import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
+import static siayf.rh.reportes.util.BeanFactory.getBean;
 
 /**
  * <p>

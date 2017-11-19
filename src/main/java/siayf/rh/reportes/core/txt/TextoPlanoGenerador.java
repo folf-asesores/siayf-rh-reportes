@@ -24,7 +24,7 @@ import siayf.rh.reportes.nomina.firma.Firma;
 import siayf.rh.reportes.nomina.prenomina.Prenomina;
 import siayf.rh.reportes.util.TipoArchivo;
 
-import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
+import static siayf.rh.reportes.util.BeanFactory.getBean;
 
 /**
  * Esta clase se encarga de generar los reporte de texto plano.

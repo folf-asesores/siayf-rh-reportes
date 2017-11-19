@@ -1,5 +1,5 @@
 /*
- * BeanInjectUtil.java
+ * BeanFactory.java
  * Creado el 28/oct/2017 7:36:20 AM
  * 
  */
@@ -17,9 +17,9 @@ import javax.naming.NamingException;
  *
  * @author Freddy Barrera (freddy.barrera.moo@gmail.com)
  */
-public class BeanInjectUtil {
+public class BeanFactory {
 
-    private static final Logger LOGGER = Logger.getLogger(BeanInjectUtil.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(BeanFactory.class.getName());
 
     private static final String BITACORA_REPORTES_BEAN = "java:module/BitacoraReporteBean";
 
@@ -35,7 +35,7 @@ public class BeanInjectUtil {
     private static final String PRODUCTO_NOMINA_PROGRAMA_BEAN = "java:module/ProductoNominaProgramaBean";
     private static final String PRODUCTO_NOMINA_ESTATAL_BEAN = "java:module/ProductoNominaEstatalBean";
 
-    private BeanInjectUtil() {
+    private BeanFactory() {
     }
 
     public static <T> T getBean(Class<T> clase) {

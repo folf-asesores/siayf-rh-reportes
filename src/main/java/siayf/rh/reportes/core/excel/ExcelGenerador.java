@@ -6,7 +6,7 @@
 
 package siayf.rh.reportes.core.excel;
 
-import static siayf.rh.reportes.util.BeanInjectUtil.getBean;
+import static siayf.rh.reportes.util.BeanFactory.getBean;
 import static siayf.rh.reportes.util.FechaUtil.PATRON_FECHA_BASE_DE_DATOS;
 import static siayf.rh.reportes.util.TipoArchivo.XLSX;
 
